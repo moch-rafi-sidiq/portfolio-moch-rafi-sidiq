@@ -1,0 +1,1518 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <script src="https://cdn.jsdelivr.net/npm/@iconify/iconify@1.0.7/dist/iconify.min.js"></script>
+
+  <title>Moch Rafi Sidiq | Web Developer</title>
+
+
+  <!-- Tailwind -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+
+  <!-- Font -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+    rel="stylesheet">
+
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
+
+
+  <!-- GSAP -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+
+
+  <!-- Lenis -->
+  <script src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.42/bundled/lenis.min.js"></script>
+
+
+  <!-- CSS -->
+  <style>
+    .hero-glow,
+    .image-glow,
+    .hero-image-area::after {
+      display: none !important;
+    }
+
+
+    /* ========== RESET & GLOBAL ========== */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Inter', sans-serif;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+
+    /* ========== BACKGROUND & BODY ========== */
+    body {
+      background:
+        radial-gradient(circle at top left, rgba(59, 130, 246, .15), transparent 35%),
+        radial-gradient(circle at bottom right, rgba(37, 99, 235, .12), transparent 35%),
+        #07111F;
+
+      color: #F8FAFC;
+
+    }
+
+
+    /* ========== CONTAINER & GLASS EFFECT ========== */
+    .container {
+      width: 90%;
+      max-width: 1300px;
+      margin: auto;
+    }
+
+    .glass {
+      background: rgba(15, 23, 42, .75);
+      border: 1px solid rgba(148, 163, 184, .12);
+      backdrop-filter: blur(14px);
+      transition: .4s;
+      transform-style: preserve-3d;
+    }
+
+    .glass:hover {
+      border-color: rgba(59, 130, 246, .5);
+      box-shadow:
+        0 0 50px rgba(37, 99, 235, .2),
+        inset 0 0 20px rgba(255, 255, 255, .03);
+    }
+
+    .gradient-text {
+      background: linear-gradient(to right, #60A5FA, #2563EB, #60A5FA);
+      background-size: 200% auto;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .hero-glow {
+      position: absolute;
+      width: 500px;
+      height: 500px;
+      background: #2563EB;
+      border-radius: 999px;
+      filter: blur(140px);
+      opacity: .25;
+      z-index: -1;
+    }
+
+
+    /* ========== NAVBAR ========== */
+    nav {
+      position: fixed;
+      top: 16px;
+      left: 0;
+      transform: none;
+      z-index: 1000;
+      width: 100%;
+      transition: transform 0.3s ease;
+    }
+
+    .logo span {
+      color: #2563EB;
+    }
+
+    .menu {
+      display: flex;
+      gap: 35px;
+      transition: all 0.3s ease;
+    }
+
+    .menu a {
+      color: #cbd5e1;
+      text-decoration: none;
+      transition: .3s;
+      font-size: 15px;
+    }
+
+    .menu a:hover {
+      color: #60A5FA;
+    }
+
+
+    /* ========== HERO SECTION ========== */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      position: relative;
+      padding-top: 120px;
+
+    }
+
+    .hero-content {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 70px;
+      align-items: center;
+    }
+
+    .hero-text p.small {
+      color: #60A5FA;
+      margin-bottom: 20px;
+      font-size: 18px;
+    }
+
+    .hero-title {
+      font-size: 82px;
+      line-height: 1;
+      letter-spacing: -3px;
+      font-weight: 800;
+      margin-bottom: 32px;
+    }
+
+    .hero-desc {
+      color: #CBD5E1;
+      line-height: 1.9;
+      font-size: 19px;
+      margin-bottom: 45px;
+      max-width: 620px;
+    }
+
+    .hero-buttons {
+      display: flex;
+      gap: 20px;
+    }
+
+    .btn {
+      padding: 17px 32px;
+      border: none;
+      border-radius: 18px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: .3s;
+      font-size: 15px;
+    }
+
+    .btn-primary {
+      background: #2563EB;
+      color: white;
+      box-shadow: 0 0 40px rgba(37, 99, 235, .4);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-5px);
+      background: #1d4ed8;
+    }
+
+    .btn-secondary {
+      background: transparent;
+      border: 1px solid rgba(255, 255, 255, .15);
+      color: white;
+    }
+
+    .btn-secondary:hover {
+      border-color: #2563EB;
+      transform: translateY(-5px);
+    }
+
+    section {
+      padding: 130px 0;
+    }
+
+    .section-title {
+      margin-bottom: 60px;
+    }
+
+    .section-title p {
+      color: #60A5FA;
+      margin-bottom: 10px;
+    }
+
+    .section-title h2 {
+      font-size: 58px;
+      font-weight: 800;
+      letter-spacing: -2px;
+    }
+
+
+    /* ========== ABOUT SECTION ========== */
+    .about-box {
+      padding: 50px;
+      border-radius: 35px;
+    }
+
+    .about-box p {
+      color: #cbd5e1;
+      line-height: 2;
+      font-size: 18px;
+    }
+
+
+    /* ========== SKILLS SECTION ========== */
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 25px;
+    }
+
+    .skill-card {
+      padding: 40px 30px;
+      border-radius: 30px;
+      transition: .4s;
+    }
+
+    .skill-card:hover {
+      transform: translateY(-12px) scale(1.02);
+    }
+
+    section {
+      position: relative;
+    }
+
+    section::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 80%;
+      height: 1px;
+      background: linear-gradient(to right,
+          transparent,
+          rgba(59, 130, 246, .2),
+          transparent);
+    }
+
+    .project-card,
+    .skill-card,
+    .about-box,
+    .contact-box {
+      box-shadow:
+        0 10px 40px rgba(0, 0, 0, .25);
+    }
+
+    .skill-card i {
+      font-size: 45px;
+      margin-bottom: 25px;
+    }
+
+    .skill-card h3 {
+      margin-bottom: 15px;
+      font-size: 22px;
+    }
+
+    .skill-card p {
+      color: #94A3B8;
+      line-height: 1.7;
+    }
+
+
+    /* ========== PROJECTS SECTION ========== */
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 30px;
+    }
+
+    .project-card {
+      overflow: hidden;
+      border-radius: 30px;
+      position: relative;
+    }
+
+
+    .project-card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top,
+          rgba(7, 17, 31, .95),
+          transparent 60%);
+      z-index: 1;
+    }
+
+    .project-content {
+      position: relative;
+      z-index: 2;
+      margin-top: -40px;
+    }
+
+    .project-card img {
+      width: 100%;
+      height: 240px;
+      object-fit: cover;
+      object-position: top center;
+      transition: .5s;
+    }
+
+    .project-card:hover img {
+      transform: scale(1.08);
+    }
+
+    .project-content {
+      padding: 30px;
+    }
+
+    .project-content h3 {
+      font-size: 28px;
+      margin-bottom: 15px;
+    }
+
+    .project-content p {
+      color: #94A3B8;
+      line-height: 1.7;
+      margin-bottom: 25px;
+    }
+
+    .tags {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .tag {
+      padding: 10px 18px;
+      border-radius: 999px;
+      background: rgba(37, 99, 235, .15);
+      color: #60A5FA;
+      font-size: 14px;
+    }
+
+
+    /* ========== CONTACT SECTION ========== */
+    .contact-box {
+      padding: 70px;
+      border-radius: 40px;
+      text-align: center;
+    }
+
+    .contact-box h2 {
+      font-size: 60px;
+      margin-bottom: 20px;
+    }
+
+    .contact-box p {
+      color: #94A3B8;
+      margin-bottom: 40px;
+      font-size: 18px;
+    }
+
+    .socials {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+    }
+
+    .socials a {
+      width: 60px;
+      height: 60px;
+      border-radius: 20px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-decoration: none;
+      color: white;
+      font-size: 22px;
+      transition: .4s;
+    }
+
+    .socials a:hover {
+      background: #2563EB;
+      transform: translateY(-8px);
+    }
+
+    .hero-content {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-items: center;
+      gap: 90px;
+    }
+
+    .hero-image-area {
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .image-glow {
+      position: absolute;
+
+      width: 700px;
+      height: 700px;
+
+      background:
+        radial-gradient(circle,
+          rgba(37, 99, 235, .95) 0%,
+          rgba(37, 99, 235, .45) 40%,
+          transparent 72%);
+
+      filter: blur(120px);
+
+      opacity: .95;
+
+      z-index: -1;
+    }
+
+    @keyframes blobFloat {
+
+      0% {
+        border-radius:
+          58% 42% 65% 35% / 40% 45% 55% 60%;
+
+        transform:
+          rotate(-8deg) translateY(0px);
+      }
+
+      50% {
+        border-radius:
+          48% 52% 55% 45% / 55% 40% 60% 45%;
+
+        transform:
+          rotate(-6deg) translateY(-10px);
+      }
+
+      100% {
+        border-radius:
+          58% 42% 65% 35% / 40% 45% 55% 60%;
+
+        transform:
+          rotate(-8deg) translateY(0px);
+      }
+
+    }
+
+
+    /* ========== BLOB BORDER (FOTO PROFIL) ========== */
+    .blob-border {
+      position: relative;
+      width: 500px;
+      height: 560px;
+      display: flex;
+      justify-content: center;
+      align-items: flex-end;
+      overflow: hidden;
+      border-radius: 58% 42% 65% 35% / 40% 45% 55% 60%;
+      background: linear-gradient(145deg, #0F6BFF 0%, #2563EB 35%, #1D4ED8 70%, #60A5FA 100%);
+      padding: 3px;
+      transform: rotate(-8deg);
+      box-shadow: 0 0 25px #2563EB, 0 0 60px rgba(37, 99, 235, .9), 0 0 140px rgba(59, 130, 246, .55);
+      animation: blobFloat 6s ease-in-out infinite, floatProfile 4s ease-in-out infinite;
+    }
+
+    /* Animasi naik turun */
+    @keyframes floatProfile {
+      0% {
+        transform: rotate(-8deg) translateY(0px);
+      }
+
+      50% {
+        transform: rotate(-8deg) translateY(-15px);
+      }
+
+      100% {
+        transform: rotate(-8deg) translateY(0px);
+      }
+    }
+
+    .blob-border::before {
+      content: '';
+      position: absolute;
+      inset: .1px;
+      border-radius: inherit;
+      border: 2.5px solid rgba(255, 255, 255, .85);
+      z-index: 2;
+      pointer-events: none;
+    }
+
+    .blob-border img {
+      width: 118%;
+      height: 118%;
+      object-fit: contain;
+      object-position: center bottom;
+      transform: rotate(8deg) scale(1.1);
+      z-index: 1;
+    }
+
+    @keyframes blobMorph {
+
+      0% {
+        border-radius:
+          58% 42% 63% 37% / 40% 45% 55% 60%;
+      }
+
+      25% {
+        border-radius:
+          48% 52% 55% 45% / 52% 38% 62% 48%;
+      }
+
+      50% {
+        border-radius:
+          65% 35% 40% 60% / 45% 60% 40% 55%;
+      }
+
+      75% {
+        border-radius:
+          40% 60% 52% 48% / 60% 40% 58% 42%;
+      }
+
+      100% {
+        border-radius:
+          58% 42% 63% 37% / 40% 45% 55% 60%;
+      }
+
+    }
+
+    .hero-image-area::after {
+      content: '';
+      position: absolute;
+
+      width: 600px;
+      height: 600px;
+
+      background: #2563EB;
+
+      border-radius: 999px;
+
+      filter: blur(140px);
+
+      opacity: .28;
+
+      z-index: -1;
+    }
+
+    .hero-title {
+      font-size: 92px;
+      font-weight: 800;
+      line-height: 1;
+      margin-bottom: 20px;
+      letter-spacing: -4px;
+    }
+
+    .hero-job {
+      font-size: 42px;
+      color: #CBD5E1;
+      margin-bottom: 25px;
+      font-weight: 700;
+    }
+
+    .typing-container {
+      display: inline-flex;
+      align-items: center;
+    }
+
+    .typing-text {
+      position: relative;
+      background: linear-gradient(135deg, #60A5FA, #3B82F6, #60A5FA);
+      background-size: 200% auto;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      font-weight: 700;
+      white-space: nowrap;
+      transition: all 0.05s linear;
+      will-change: contents;
+    }
+
+    .typing-text::after {
+      content: '|';
+      position: relative;
+      color: #60A5FA;
+      -webkit-text-fill-color: #60A5FA;
+      animation: blink 0.7s ease-in-out infinite;
+      margin-left: 4px;
+      font-weight: 300;
+    }
+
+    @keyframes blink {
+
+      0%,
+      100% {
+        opacity: 1;
+      }
+
+      50% {
+        opacity: 0.15;
+      }
+    }
+
+    .hero-desc {
+      font-size: 20px;
+      line-height: 1.9;
+      color: #94A3B8;
+      max-width: 620px;
+      margin-bottom: 35px;
+    }
+
+    .hero-socials {
+      display: flex;
+      gap: 18px;
+      margin-bottom: 35px;
+    }
+
+    .hero-socials a {
+      width: 58px;
+      height: 58px;
+      border-radius: 18px;
+      background: rgba(15, 23, 42, .9);
+      border: 1px solid rgba(255, 255, 255, .08);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: #60A5FA;
+      text-decoration: none;
+      font-size: 22px;
+      transition: .3s;
+    }
+
+    .hero-socials a:hover {
+      transform: translateY(-6px);
+      background: #2563EB;
+      color: white;
+    }
+
+
+    /* ========== RESPONSIVE (HP KECIL) ========== */
+    @media(max-width:550px) {
+
+      .hero-glow {
+        width: 150px;
+        height: 150px;
+        filter: blur(80px);
+        opacity: .15;
+      }
+
+      .image-glow {
+        width: 220px;
+        height: 220px;
+        filter: blur(60px);
+      }
+
+      .hero-image-area::after {
+        width: 200px;
+        height: 200px;
+        filter: blur(60px);
+      }
+
+
+      .hero-title {
+        font-size: 42px;
+        letter-spacing: -2px;
+      }
+
+      .blob-border {
+        width: 280px !important;
+        height: 320px !important;
+      }
+
+      .hero-image-area {
+        margin-bottom: -50px;
+      }
+
+      .hero-job {
+        font-size: 22px;
+      }
+
+      .hero-desc {
+        font-size: 16px;
+      }
+
+      .btn {
+        padding: 12px 24px;
+        font-size: 14px;
+      }
+
+      .hero-socials a {
+        width: 48px;
+        height: 48px;
+        font-size: 18px;
+      }
+
+      .section-title h2 {
+        font-size: 32px;
+      }
+
+      .about-box p {
+        font-size: 15px;
+      }
+
+      .skill-card {
+        padding: 30px 20px;
+      }
+
+      .skill-card h3 {
+        font-size: 18px;
+      }
+
+      .skill-card p {
+        font-size: 13px;
+      }
+
+      .project-content h3 {
+        font-size: 22px;
+      }
+
+      .project-content p {
+        font-size: 13px;
+      }
+
+      .tag {
+        font-size: 11px;
+        padding: 6px 12px;
+      }
+
+      .contact-box {
+        padding: 40px 20px;
+      }
+
+      .contact-box h2 {
+        font-size: 32px;
+      }
+
+      .contact-box p {
+        font-size: 14px;
+      }
+
+      .socials a {
+        width: 50px;
+        height: 50px;
+        font-size: 18px;
+      }
+
+      .skills-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+      }
+
+      .projects-grid {
+        grid-template-columns: 1fr;
+        gap: 25px;
+      }
+    }
+
+
+    /* NAVBAR */
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 20px;
+      border-radius: 20px;
+      gap: 10px;
+      flex-wrap: nowrap;
+      padding-top: 18px;
+      /* ↑ perbesar ke atas */
+      padding-bottom: 18px;
+      /* ↓ perbesar ke bawah */
+    }
+
+    .logo {
+      font-size: 16px;
+      font-weight: 800;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+
+    .hamburger {
+      display: none;
+      cursor: pointer;
+      font-size: 20px;
+      color: white;
+      background: rgba(37, 99, 235, 0.2);
+      width: 36px;
+      height: 36px;
+      border-radius: 10px;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+
+    /* ========== RESPONSIVE (TABLET & HP) ========== */
+    @media(max-width:950px) {
+      .container {
+        padding: 0 15px;
+        width: 100%;
+        box-sizing: border-box;
+      }
+
+      .hero-content {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-title {
+        font-size: 55px;
+      }
+
+      .section-title h2 {
+        font-size: 40px;
+      }
+
+      .contact-box h2 {
+        font-size: 45px;
+      }
+
+      .menu {
+        display: none;
+      }
+
+      .navbar {
+        width: 100% !important;
+        max-width: 100% !important;
+        padding: 6px 20px !important;
+        /* ← ganti ini */
+        margin: 0 !important;
+        display: flex !important;
+        justify-content: space-between !important;
+        align-items: center !important;
+        gap: 12px !important;
+        box-sizing: border-box !important;
+      }
+
+      .logo {
+        font-size: 18px !important;
+        /* ← perbesar */
+        flex-shrink: 1 !important;
+        overflow: hidden !important;
+        white-space: nowrap !important;
+        text-overflow: ellipsis !important;
+        max-width: 65% !important;
+      }
+
+      .hamburger {
+        display: flex !important;
+        flex-shrink: 0 !important;
+        width: 48px !important;
+        /* ← perbesar */
+        height: 48px !important;
+        /* ← perbesar */
+        font-size: 24px !important;
+        /* ← perbesar */
+      }
+    }
+
+    .menu.active {
+      display: flex !important;
+      position: absolute;
+      top: 75px;
+      left: auto;
+      right: 20px;
+
+      width: 100px;
+      margin: auto;
+
+      background: rgba(15, 23, 42, .90);
+      backdrop-filter: blur(1px);
+
+      flex-direction: column;
+      padding: 20px;
+      border-radius: 20px;
+      gap: 15px;
+
+      z-index: 1000;
+      box-sizing: border-box;
+      border: 1px solid rgba(59, 130, 246, 0.3);
+    }
+
+
+    /* Animasi Hamburger */
+    .hamburger {
+      transition: all 0.3s ease;
+    }
+
+
+    /* ========== ANIMASI ========== */
+    .hamburger.active {
+      background: #2563EB;
+      transform: rotate(90deg);
+    }
+
+
+    /* Animasi Menu Dropdown */
+    .menu {
+      transition: all 0.3s ease;
+      transform-origin: top right;
+    }
+
+    .menu.active {
+      display: flex !important;
+      animation: slideIn 0.3s ease forwards;
+    }
+
+    @keyframes slideIn {
+      from {
+        opacity: 0;
+        transform: translateY(-20px) scale(0.95);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+    }
+
+
+    /* Animasi Icon Hamburger berubah jadi X */
+    .hamburger i {
+      transition: all 0.3s ease;
+    }
+
+    .hamburger.active i {
+      transform: rotate(90deg);
+    }
+
+    .project-links {
+      margin-top: auto;
+      /* ← memaksa tombol ke bawah */
+      padding-top: 28px;
+    }
+
+    .btn-demo {
+      background: #2563EB;
+      color: white;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      width: 100%;
+      justify-content: center;
+      padding: 12px 20px;
+      border-radius: 40px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: 0.3s;
+    }
+
+    .btn-demo:hover {
+      background: #1d4ed8;
+      transform: translateY(-3px);
+    }
+  </style>
+</head>
+
+
+<!-- BODY -->
+
+<body>
+
+
+  <!-- ========== GLOW EFFECT ========== -->
+  <div class="hero-glow" style="top:-120px;left:-120px;"></div>
+  <div class="hero-glow" style="bottom:-120px;right:-120px;"></div>
+
+
+  <!-- ========== NAVBAR ========== -->
+  <nav>
+    <div class="container">
+      <div class="navbar glass">
+
+        <div class="logo">
+          Moch Rafi <span class="gradient-text">Sidiq</span>
+        </div>
+
+        <div class="menu">
+          <a href="#home" onclick="closeMenu()">Home</a>
+          <a href="#about" onclick="closeMenu()">About</a>
+          <a href="#skills" onclick="closeMenu()">Skills</a>
+          <a href="#projects" onclick="closeMenu()">Projects</a>
+          <a href="#contact" onclick="closeMenu()">Contact</a>
+        </div>
+
+        <div class="hamburger" onclick="toggleMenu()">
+          <i class="fa-solid fa-bars"></i>
+        </div>
+
+      </div>
+    </div>
+  </nav>
+
+
+  <!-- ========== HERO SECTION ========== -->
+  <section id="home" class="hero">
+
+    <div class="container">
+      <div class="hero-content">
+
+
+        <!-- LEFT IMAGE -->
+        <div class="hero-image-area">
+
+          <div class="image-glow"></div>
+
+          <div class="blob-border">
+            <img src="./foto/Foto Profil.png" alt="">
+          </div>
+        </div>
+
+        <!-- RIGHT TEXT -->
+        <div class="hero-text">
+
+          <p class="small hero-small">
+            Halo, Saya 👋
+          </p>
+
+          <h1 class="hero-title">
+            Moch Rafi <span class="gradient-text">Sidiq</span>
+          </h1>
+
+          <h3 class="hero-job">
+            Web Developer &
+            <span class="typing-container">
+              <span class="typing-text" id="typing-animation"></span>
+            </span>
+          </h3>
+
+          <p class="hero-desc">
+            Siap membantu Anda membangun website profesional, cepat, dan responsif. Dengan teknologi
+            terbaru untuk hasil maksimal.
+          </p>
+
+          <!-- SOCIAL -->
+          <div class="hero-socials">
+
+            <a href="https://wa.me/6285871757899" class="glass" target="_blank">
+              <i class="fa-brands fa-whatsapp"></i>
+            </a>
+
+            <a href="#">
+              <i class="fa-brands fa-instagram"></i>
+            </a>
+
+            <a href="#">
+              <i class="fa-solid fa-envelope"></i>
+            </a>
+
+          </div>
+
+          <!-- BUTTON -->
+          <div class="hero-buttons">
+
+            <button class="btn btn-primary"
+              onclick="window.open('https://wa.me/6285871757899?text=Halo%20Rafi,%20saya%20tertarik%20dengan%20jasamu', '_blank')">
+              Hire Me →
+            </button>
+
+            <button class="btn btn-secondary"
+              onclick="document.getElementById('contact').scrollIntoView({behavior: 'smooth'})">
+              Contact Me
+            </button>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- ========== ABOUT SECTION ========== -->
+  <section id="about">
+
+    <div class="container">
+
+      <div class="section-title">
+        <p>About Me</p>
+        <h2>Tentang Saya</h2>
+      </div>
+
+      <div class="about-box glass">
+
+        <p>
+          Saya membantu bisnis dan individu membangun website profesional, cepat, dan responsif. Dengan Laravel di
+          backend dan desain modern di frontend, website Anda akan terlihat profesional dan mudah dikelola.
+        </p>
+
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- ========== SKILLS SECTION ========== -->
+  <section id="skills">
+
+    <div class="container">
+
+      <div class="section-title">
+        <p>Skills</p>
+        <h2>My Skills</h2>
+      </div>
+
+      <div class="skills-grid">
+
+        <div class="skill-card glass">
+          <i class="fa-brands fa-html5" style="color:#f97316;"></i>
+          <h3>HTML & CSS</h3>
+          <p>
+            Responsive modern website development.
+          </p>
+        </div>
+
+        <div class="skill-card glass">
+          <i class="fa-brands fa-js" style="color:#facc15;"></i>
+          <h3>JavaScript</h3>
+          <p>
+            Interactive and dynamic website experience.
+          </p>
+        </div>
+
+        <div class="skill-card glass">
+          <i class="fa-brands fa-laravel" style="color:#ef4444;"></i>
+          <h3>Laravel</h3>
+          <p>
+            Powerful backend web application development.
+          </p>
+        </div>
+
+        <div class="skill-card glass">
+          <i class="fa-solid fa-database" style="color:#60A5FA;"></i>
+          <h3>MySQL</h3>
+          <p>
+            MySQL database management and optimization.
+          </p>
+        </div>
+
+        <div class="skill-card glass">
+          <i class="fa-brands fa-git-alt" style="color:#F05032;"></i>
+          <h3>Git & GitHub</h3>
+          <p>
+            Version control dan kolaborasi tim.
+          </p>
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- ========== PROJECTS SECTION ========== -->
+  <section id="projects">
+
+    <div class="container">
+
+      <div class="section-title">
+        <p>Projects</p>
+        <h2>My Latest Projects</h2>
+      </div>
+
+      <div class="projects-grid">
+
+        <div class="project-card glass">
+          <img src="foto/Foto Project SMK BPPI.png">
+          <div class="project-content">
+            <h3>SMK BPPI Baleendah</h3>
+            <p>Website resmi SMK BPPI Baleendah. Menyediakan informasi profil sekolah, program keahlian, dan layanan
+              akademik digital untuk siswa.</p>
+
+            <div class="tags">
+              <div class="tag">Laravel</div>
+              <div class="tag">PHP</div>
+              <div class="tag">MySQL</div>
+            </div>
+
+            <div class="project-links">
+              <a href="https://smk.sekolahbppi.sch.id/home" target="_blank" class="btn-demo">
+                <i class="fa-solid fa-arrow-up-right-from-square"></i> Kunjungi Website
+              </a>
+            </div>
+
+          </div>
+        </div>
+
+        <div class="project-card glass">
+          <img src="foto/Foto Project bank mini.png">
+          <div class="project-content">
+            <h3>Bank Mini</h3>
+            <p>Platform menabung digital bagi siswa SMK BPPI Baleendah. Memudahkan siswa dalam menyetor tabungan dan
+              memantau saldo secara real-time.</p>
+            <div class="tags">
+              <div class="tag">Laravel</div>
+              <div class="tag">PHP</div>
+              <div class="tag">MySQL</div>
+            </div>
+
+            <div class="project-links">
+              <a href="https://bankmini.sekolahbppi.sch.id/" target="_blank" class="btn-demo">
+                <i class="fa-solid fa-arrow-up-right-from-square"></i> Kunjungi Website
+              </a>
+            </div>
+
+          </div>
+
+        </div>
+
+
+        <div class="project-card glass">
+
+          <img src="foto/Foto Project Portofolio.png">
+
+          <div class="project-content">
+
+            <h3>Portfolio Website</h3>
+
+            <p>
+              Website portfolio modern menampilkan profil, skill, dan project. <br>Responsif dengan animasi yang
+              smooth.
+            </p>
+
+            <div class="tags">
+              <div class="tag">UI/UX</div>
+              <div class="tag">Web App</div>
+            </div>
+            <div class="project-links">
+              <a href="------------" target="_blank" class="btn-demo">
+                <i class="fa-solid fa-arrow-up-right-from-square"></i> Kunjungi Website
+              </a>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- ========== CONTACT SECTION ========== -->
+  <section id="contact">
+
+    <div class="container">
+
+      <div class="contact-box glass">
+
+        <p style="color:#60A5FA;margin-bottom:15px;">
+          Contact
+        </p>
+
+        <h2>
+          Let's Work Together
+        </h2>
+
+        <p>
+          Tertarik bekerja sama atau membuat project?
+          Hubungi saya sekarang juga.
+        </p>
+
+        <div class="socials">
+
+          <a href="https://wa.me/6285871757899" class="glass" target="_blank">
+            <i class="fa-brands fa-whatsapp"></i>
+          </a>
+
+          <a href="#" class="glass">
+            <i class="fa-brands fa-instagram"></i>
+          </a>
+
+          <a href="mailto:emailkamu@gmail.com" class="glass">
+            <i class="fa-solid fa-envelope"></i>
+          </a>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- ANIMATION -->
+  <script>
+
+
+    // ========== TYPING ANIMATION ==========
+    const words = [" Full Stack Dev ", " Front End ", " Back End "];
+    let wordIndex = 0;
+    let charIndex = 0;
+    let isDeleting = false;
+    const typingElement = document.getElementById("typing-animation");
+
+    function typeEffect() {
+      const currentWord = words[wordIndex];
+      let displayedText = currentWord.substring(0, charIndex);
+
+      typingElement.textContent = displayedText;
+
+      let speed = isDeleting ? 35 : 70;
+
+      if (!isDeleting && charIndex < currentWord.length) {
+        charIndex++;
+        speed = 120;
+      }
+      else if (isDeleting && charIndex > 0) {
+        charIndex--;
+        speed = 90;
+      }
+
+      if (!isDeleting && charIndex === currentWord.length) {
+        isDeleting = true;
+        speed = 1500;
+      }
+      else if (isDeleting && charIndex === 0) {
+        isDeleting = false;
+        wordIndex = (wordIndex + 1) % words.length;
+        speed = 500;
+      }
+
+      setTimeout(typeEffect, speed);
+    }
+
+    setTimeout(() => {
+      typeEffect();
+    }, 500);
+
+
+    // ========== GSAP REGISTER PLUGIN ==========
+    gsap.registerPlugin(ScrollTrigger);
+
+
+    // ========== NAVBAR HIDE ON SCROLL ==========
+    let lastScroll = 0;
+    const navbar = document.querySelector('nav');
+
+    window.addEventListener('scroll', function () {
+      let currentScroll = window.pageYOffset;
+
+      if (currentScroll > lastScroll && currentScroll > 100) {
+        // Scroll ke bawah - navbar hilang
+        navbar.style.transform = 'translateY(-100px)';
+      } else {
+        // Scroll ke atas - navbar muncul dengan jarak 20px dari atas
+        navbar.style.transform = 'translateY(0)';
+      }
+      lastScroll = currentScroll;
+    });
+
+
+    // ========== GSAP ANIMATIONS ==========
+    // HERO TEXT
+    gsap.from(".hero-small", {
+      y: 40,
+      opacity: 0,
+      duration: 1
+    });
+
+    gsap.from(".hero-title", {
+      y: 80,
+      opacity: 0,
+      duration: 1.3,
+      ease: "power4.out"
+    });
+
+    gsap.from(".hero-desc", {
+      y: 40,
+      opacity: 0,
+      delay: .3,
+      duration: 1
+    });
+
+    gsap.from(".hero-buttons", {
+      y: 40,
+      opacity: 0,
+      delay: .5,
+      duration: 1
+    });
+
+
+    // FLOATING GLOW
+    gsap.to(".hero-glow", {
+      x: 50,
+      y: 50,
+      duration: 6,
+      repeat: -1,
+      yoyo: true,
+      ease: "sine.inOut"
+    });
+
+
+    // SCROLL ANIMATION
+    gsap.utils.toArray("section").forEach(section => {
+
+      gsap.from(section, {
+        opacity: 0,
+        y: 100,
+        duration: 1,
+        ease: "power3.out",
+        scrollTrigger: {
+          trigger: section,
+          start: "top 80%"
+        }
+      });
+
+    });
+
+
+    // ========== HAMBURGER MENU ==========
+    function toggleMenu() {
+      const menu = document.querySelector('.menu');
+      const hamburger = document.querySelector('.hamburger');
+      const icon = document.querySelector('.hamburger i');
+
+      if (menu.classList.contains('active')) {
+        // Tutup
+        menu.classList.remove('active');
+        hamburger.classList.remove('active');
+        if (icon) {
+          icon.classList.remove('fa-times');
+          icon.classList.add('fa-bars');
+        }
+      } else {
+        // Buka
+        menu.classList.add('active');
+        hamburger.classList.add('active');
+        if (icon) {
+          icon.classList.remove('fa-bars');
+          icon.classList.add('fa-times');
+        }
+      }
+    }
+
+
+    // ========== EVENT LISTENERS ==========
+    // Tutup menu saat klik link
+    document.querySelectorAll('.menu a').forEach(function (link) {
+      link.addEventListener('click', function () {
+        closeMenu();
+      });
+    });
+
+    // Tutup menu saat klik di luar
+    document.addEventListener('click', function (event) {
+      const menu = document.querySelector('.menu');
+      const hamburger = document.querySelector('.hamburger');
+
+      if (menu && menu.classList.contains('active')) {
+        if (!menu.contains(event.target) && !hamburger.contains(event.target)) {
+          const icon = document.querySelector('.hamburger i');
+          menu.classList.remove('active');
+          hamburger.classList.remove('active');
+          if (icon) {
+            icon.classList.remove('fa-times');
+            icon.classList.add('fa-bars');
+          }
+        }
+      }
+    });
+
+    function closeMenu() {
+      const menu = document.querySelector('.menu');
+      const hamburger = document.querySelector('.hamburger');
+      const icon = document.querySelector('.hamburger i');
+
+      menu.classList.remove('active');
+      hamburger.classList.remove('active');
+      if (icon) {
+        icon.classList.remove('fa-times');
+        icon.classList.add('fa-bars');
+      }
+    }
+
+  </script>
+
+</body>
