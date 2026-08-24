@@ -320,6 +320,9 @@
       overflow: hidden;
       border-radius: 30px;
       position: relative;
+      display: flex;
+      flex-direction: column;
+      height: 100%;
     }
 
 
@@ -337,6 +340,11 @@
       position: relative;
       z-index: 2;
       margin-top: -40px;
+      padding: 30px;
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+      height: 100%;
     }
 
     .project-card img {
@@ -364,13 +372,18 @@
       color: #94A3B8;
       line-height: 1.7;
       margin-bottom: 25px;
+      flex: 1;
+      /* ← ini yang bikin deskripsi memenuhi ruang */
     }
+
 
     .tags {
       display: flex;
       gap: 10px;
       flex-wrap: wrap;
+      margin-bottom: 20px;
     }
+
 
     .tag {
       padding: 10px 18px;
@@ -964,7 +977,7 @@
 
     .project-links {
       margin-top: auto;
-      /* ← memaksa tombol ke bawah */
+      /* ← ini yang bikin tombol ke bawah */
       padding-top: 28px;
     }
 
@@ -1063,7 +1076,7 @@
           </h3>
 
           <p class="hero-desc">
-            Siap membantu Anda membangun website profesional, cepat, dan responsif. Dengan teknologi
+            Siap membantu Anda membangun website dan aplikasi profesional, cepat, dan responsif. Dengan teknologi
             terbaru untuk hasil maksimal.
           </p>
 
@@ -1145,9 +1158,18 @@
 
         <div class="skill-card glass">
           <i class="fa-brands fa-html5" style="color:#f97316;"></i>
-          <h3>HTML & CSS</h3>
+          <h3>HTML & PHP</h3>
           <p>
             Responsive modern website development.
+          </p>
+        </div>
+
+        <!-- SKILL TAILWIND CSS -->
+        <div class="skill-card glass">
+          <i class="fa-brands fa-css3-alt" style="color:#38BDF8;"></i>
+          <h3>CSS & Tailwind CSS</h3>
+          <p>
+            Utility-first CSS framework untuk desain cepat & modern.
           </p>
         </div>
 
@@ -1161,7 +1183,7 @@
 
         <div class="skill-card glass">
           <i class="fa-brands fa-laravel" style="color:#ef4444;"></i>
-          <h3>Laravel</h3>
+          <h3>Laravel & Flutter</h3>
           <p>
             Powerful backend web application development.
           </p>
@@ -1169,7 +1191,7 @@
 
         <div class="skill-card glass">
           <i class="fa-solid fa-database" style="color:#60A5FA;"></i>
-          <h3>MySQL</h3>
+          <h3>MySQL & PostgreSQL</h3>
           <p>
             MySQL database management and optimization.
           </p>
@@ -1248,29 +1270,58 @@
 
         <div class="project-card glass">
 
-          <img src="foto/Foto Project Portofolio.png">
+          <img src="foto/foto Project bimbingan konseling.png">
 
           <div class="project-content">
 
-            <h3>Portfolio Website</h3>
+            <h3>Bimbingan Konseling</h3>
 
             <p>
-              Website portfolio modern menampilkan profil, skill, dan project. <br>Responsif dengan animasi yang
-              smooth.
+              Sistem pencatatan kasus Bimbingan dan Konseling berbasis web untuk SMK BPPI Baleendah. Mendukung
+              pencatatan kasus siswa secara berkelanjutan, monitoring perkembangan, dan laporan hasil konseling.
             </p>
 
             <div class="tags">
-              <div class="tag">UI/UX</div>
-              <div class="tag">Web App</div>
+              <div class="tag">Laravel</div>
+              <div class="tag">PHP</div>
+              <div class="tag">MySQL</div>
             </div>
             <div class="project-links">
-              <a href="https://moch-rafi-sidiq.github.io/portfolio-moch-rafi-sidiq/" target="_blank" class="btn-demo">
+              <a href="https://bk.sekolahbppi.sch.id/login" target="_blank" class="btn-demo">
                 <i class="fa-solid fa-arrow-up-right-from-square"></i> Kunjungi Website
               </a>
             </div>
           </div>
 
         </div>
+
+        <!--   <div class="project-card glass">
+
+          <img src="foto/">
+
+          <div class="project-content">
+
+            <h3>ERP Sungjae Textile</h3>
+
+            <p>
+              ERP SJ Textile adalah sistem manajemen usaha terpadu yang dirancang khusus untuk Sentra Jaya Textile.
+              Mengelola seluruh proses bisnis mulai dari order reseller, produksi, hingga tagihan secara real-time dan
+              terintegrasi.
+            </p>
+
+            <div class="tags">
+              <div class="tag">Laravel</div>
+              <div class="tag">PHP</div>
+              <div class="tag">MySQL</div>
+            </div>
+            <div class="project-links">
+              <a href="" target="_blank" class="btn-demo">
+                <i class="fa-solid fa-arrow-up-right-from-square"></i> Kunjungi Website
+              </a>
+            </div>
+          </div>
+
+        </div>  -->
 
       </div>
 
