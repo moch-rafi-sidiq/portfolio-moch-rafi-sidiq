@@ -1307,7 +1307,7 @@
       filter: brightness(0.85);
     }
 
-    /* Lightbox Modal */
+    /* Lightbox Modal — FIX kepotong atas/bawah */
     .lightbox {
       display: none;
       position: fixed;
@@ -1318,8 +1318,12 @@
       align-items: center;
       justify-content: center;
       padding: 20px;
+      padding-top: max(20px, env(safe-area-inset-top));
+      padding-bottom: max(20px, env(safe-area-inset-bottom));
       opacity: 0;
       transition: opacity 0.3s ease;
+      overflow-y: auto;
+      overflow-x: hidden;
     }
 
     .lightbox.active {
@@ -1330,11 +1334,17 @@
     .lightbox-content {
       position: relative;
       max-width: 95vw;
-      max-height: 92vh;
+      width: auto;
+      max-height: none;
       display: flex;
       flex-direction: column;
       align-items: center;
+      justify-content: center;
+      gap: 12px;
       animation: lightboxZoom 0.35s ease;
+      margin: auto;
+      padding: 8px 0 6px;
+      box-sizing: border-box;
     }
 
     @keyframes lightboxZoom {
@@ -1343,20 +1353,26 @@
     }
 
     .lightbox-content img {
-      max-width: 100%;
-      max-height: 85vh;
+      max-width: min(92vw, 1100px);
+      max-height: min(62vh, calc(100vh - 220px));
+      max-height: min(62dvh, calc(100dvh - 220px));
+      width: auto;
+      height: auto;
       object-fit: contain;
       border-radius: 16px;
       box-shadow: 0 20px 80px rgba(0,0,0,0.6), 0 0 0 1px rgba(255,255,255,0.1);
+      flex-shrink: 0;
     }
 
     .lightbox-caption {
-      margin-top: 16px;
       color: #F8FAFC;
       font-size: 18px;
       font-weight: 600;
       text-align: center;
       text-shadow: 0 2px 10px rgba(0,0,0,0.5);
+      line-height: 1.4;
+      max-width: 90vw;
+      padding: 0 8px;
     }
 
     .lightbox-caption span {
@@ -1418,10 +1434,8 @@
     .lightbox-next { right: 20px; }
     .lightbox-nav.hidden { display: none !important; }
     .lightbox-counter {
-      position: absolute;
-      top: -44px;
-      left: 50%;
-      transform: translateX(-50%);
+      position: static;
+      transform: none;
       background: rgba(15,23,42,0.9);
       border: 1px solid rgba(255,255,255,0.12);
       color: #E2E8F0;
@@ -1431,13 +1445,16 @@
       border-radius: 999px;
       z-index: 5;
       white-space: nowrap;
+      line-height: 1;
+      flex-shrink: 0;
     }
     .lightbox-dots {
       display: flex;
       gap: 7px;
-      margin-top: 14px;
       align-items: center;
       justify-content: center;
+      flex-shrink: 0;
+      padding-bottom: 2px;
     }
     .lightbox-dots span {
       width: 8px;
@@ -1451,25 +1468,11 @@
     .lightbox-dots span.active { background: #60A5FA; width: 24px; }
     .lightbox-dots.hidden { display: none !important; }
     .lightbox-counter.hidden { display: none !important; }
-    .lightbox-hint-bottom {
-      position: absolute;
-      bottom: 20px;
-      left: 50%;
-      transform: translateX(-50%);
-      color: #94A3B8;
-      font-size: 12px;
-      background: rgba(15,23,42,0.8);
-      padding: 8px 16px;
-      border-radius: 999px;
-      border: 1px solid rgba(255,255,255,0.08);
-      white-space: nowrap;
-      text-align: center;
-    }
     @media(max-width:640px){
       .lightbox-nav { width: 40px; height: 40px; font-size: 16px; }
       .lightbox-prev { left: 8px; }
       .lightbox-next { right: 8px; }
-      .lightbox-counter { top: -38px; font-size: 12px; padding: 5px 12px; }
+      .lightbox-counter { font-size: 12px; padding: 5px 12px; }
     }
 
     .lightbox-hint {
@@ -1487,8 +1490,12 @@
     }
 
     @media(max-width:550px) {
+      .lightbox { padding: 12px; }
+      .lightbox-content { gap: 10px; }
       .lightbox-content img {
-        max-height: 75vh;
+        max-height: min(58vh, calc(100vh - 210px));
+        max-height: min(58vh, calc(100dvh - 210px));
+        max-width: 94vw;
       }
       .lightbox-caption {
         font-size: 16px;
@@ -1935,8 +1942,8 @@
 
         <!-- 9. Bimbingan Konseling -->
         <div class="project-card glass">
-          <div class="project-image-wrap" onclick="openLightbox('foto/foto-Project-bimbingan-konseling.png?v=17', 'Bimbingan Konseling', 'Sistem pencatatan kasus BK')">
-            <img src="foto/foto-Project-bimbingan-konseling.png?v=17" alt="Preview Bimbingan Konseling" loading="lazy" onerror="this.src='https://via.placeholder.com/600x360/0F172A/60A5FA?text=Bimbingan+Konseling'" decoding="async">
+          <div class="project-image-wrap" onclick="openLightbox('foto/project-bk/foto-1.png?v=18', 'Bimbingan Konseling', 'Sistem pencatatan kasus BK')">
+            <img src="foto/project-bk/foto-1.png?v=18" alt="Preview Bimbingan Konseling" loading="lazy" onerror="this.src='https://via.placeholder.com/600x360/0F172A/60A5FA?text=Bimbingan+Konseling'" decoding="async">
           </div>
           <div class="project-content">
             <h3>Bimbingan Konseling</h3>
@@ -2051,7 +2058,6 @@
       </div>
       <div id="lightbox-dots" class="lightbox-dots hidden"></div>
     </div>
-    <div class="lightbox-hint-bottom"><i class="fa-solid fa-arrows-left-right"></i> Geser / swipe atau pakai &larr; &rarr; untuk ganti foto • ESC tutup</div>
   </div>
 
 
@@ -2258,12 +2264,12 @@
       "Website Profile SMK BPPI": ["foto/project-web-smk-bppi/foto-1.png?v=13","foto/project-web-smk-bppi/foto-2.png?v=13"],
       "Bank Mini SMK BPPI": ["foto/project-bankmini/foto-1.png?v=13","foto/project-bankmini/foto-2.png?v=13","foto/project-bankmini/foto-3.png?v=13","foto/project-bankmini/foto-4.png?v=13"],
       "Management Kas Kelas": ["foto/project-management-kas-kelas/foto-1.png?v=14","foto/project-management-kas-kelas/foto-2.png?v=14","foto/project-management-kas-kelas/foto-3.png?v=14"],
-      "Booking Haircut Cukur Routine": ["foto/project-Booking-Haircut-Cukur-Routine/foto-1.png?v=13","foto/project-Booking-Haircut-Cukur-Routine/foto-2.png?v=13","foto/project-Booking-Haircut-Cukur-Routine/foto-3.png?v=13","foto/project-Booking-Haircut-Cukur-Routine/foto-4.png?v=13","foto/project-Booking-Haircut-Cukur-Routine/foto-5.png?v=13"],
+      "Booking Haircut Cukur Routine": ["foto/project-Booking-Haircut-Cukur-Routine/foto-1.png?v=13","foto/project-Booking-Haircut-Cukur-Routine/foto-2.png?v=13","foto/project-Booking-Haircut-Cukur-Routine/foto-3.png?v=13","foto/project-Booking-Haircut-Cukur-Routine/foto-4.png?v=13"],
       "ERP SJ Textile": ["foto/project-ERP-SJTextile/foto-1.png?v=13","foto/project-ERP-SJTextile/foto-2.png?v=13","foto/project-ERP-SJTextile/foto-3.png?v=13"],
       "Monitoring PKL": ["foto/project-monitoring-pkl/foto-1.png?v=13","foto/project-monitoring-pkl/foto-2.png?v=13","foto/project-monitoring-pkl/foto-3.png?v=13","foto/project-monitoring-pkl/foto-4.png?v=13"],
       "Restoran": ["foto/project-restoran/foto-1.png?v=13","foto/project-restoran/foto-2.png?v=13","foto/project-restoran/foto-3.png?v=13"],
       "Monitoring Siswa": ["foto/project-monitoring-siswa/foto-1.png?v=13","foto/project-monitoring-siswa/foto-2.png?v=13","foto/project-monitoring-siswa/foto-3.png?v=13","foto/project-monitoring-siswa/foto-4.png?v=13"],
-      "Bimbingan Konseling": ["foto/foto-Project-bimbingan-konseling.png?v=17"],
+      "Bimbingan Konseling": ["foto/project-bk/foto-1.png?v=18"],
       "Management Toko Baju Online + Kasir": ["foto/project-e-commerce/foto-1.png?v=13","foto/project-e-commerce/foto-2.png?v=13","foto/project-e-commerce/foto-3.png?v=13","foto/project-e-commerce/foto-4.png?v=13"],
       "Management Toko Baju Online + Kasir Toko": ["foto/project-e-commerce/foto-1.png?v=13","foto/project-e-commerce/foto-2.png?v=13","foto/project-e-commerce/foto-3.png?v=13","foto/project-e-commerce/foto-4.png?v=13"]
     };
