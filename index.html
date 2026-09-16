@@ -8,7 +8,7 @@
   <meta http-equiv="Cache-Control" content="no-cache, must-revalidate, max-age=0" />
   <meta http-equiv="Pragma" content="no-cache" />
   <meta http-equiv="Expires" content="0" />
-  <meta name="cache-version" content="v20260916-1620" />
+  <meta name="cache-version" content="v20260916-1710" />
   <link rel="preload" as="image" href="./foto/foto-profil.png" fetchpriority="high" />
   <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin />
   <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin />
@@ -208,6 +208,7 @@
       letter-spacing: -3px;
       font-weight: 800;
       margin-bottom: 32px;
+      white-space: nowrap;
     }
 
     .hero-desc {
@@ -721,6 +722,7 @@
       line-height: 1;
       margin-bottom: 20px;
       letter-spacing: -4px;
+      white-space: nowrap;
     }
 
     .hero-job {
@@ -831,6 +833,7 @@
       .hero-title {
         font-size: 42px;
         letter-spacing: -2px;
+        white-space: nowrap;
       }
 
       .blob-border {
@@ -975,6 +978,7 @@
 
       .hero-title {
         font-size: 55px;
+        white-space: nowrap;
       }
 
       .section-title h2 {
@@ -1795,8 +1799,8 @@
 
         <!-- 9. Bimbingan Konseling -->
         <div class="project-card glass">
-          <div class="project-image-wrap" onclick="openLightbox('foto/project-bimbingan-konseling.png', 'Bimbingan Konseling', 'Sistem pencatatan kasus BK')">
-            <img src="foto/project-bimbingan-konseling.png" alt="Preview Bimbingan Konseling" loading="lazy" onerror="this.src='https://via.placeholder.com/600x360/0F172A/60A5FA?text=Bimbingan+Konseling'" decoding="async">
+          <div class="project-image-wrap" onclick="openLightbox('foto/foto-Project-bimbingan-konseling.png?v=17', 'Bimbingan Konseling', 'Sistem pencatatan kasus BK')">
+            <img src="foto/foto-Project-bimbingan-konseling.png?v=17" alt="Preview Bimbingan Konseling" loading="lazy" onerror="this.src='https://via.placeholder.com/600x360/0F172A/60A5FA?text=Bimbingan+Konseling'" decoding="async">
           </div>
           <div class="project-content">
             <h3>Bimbingan Konseling</h3>
@@ -1930,7 +1934,7 @@
     } catch(e){ console.warn('Lenis init failed', e); }
 
     // ========== TYPING ANIMATION (anti-duplicate on refresh/bfcache) ==========
-    const words = [" Full Stack Dev ", " Front End ", " Back End "];
+    const words = [" Full Stack ", " Front End ", " Back End "];
     let wordIndex = 0;
     let charIndex = 0;
     let isDeleting = false;
@@ -2123,7 +2127,7 @@
       "Monitoring PKL": ["foto/project-monitoring-pkl/foto-1.png?v=13","foto/project-monitoring-pkl/foto-2.png?v=13","foto/project-monitoring-pkl/foto-3.png?v=13","foto/project-monitoring-pkl/foto-4.png?v=13"],
       "Restoran": ["foto/project-restoran/foto-1.png?v=13","foto/project-restoran/foto-2.png?v=13","foto/project-restoran/foto-3.png?v=13"],
       "Monitoring Siswa": ["foto/project-monitoring-siswa/foto-1.png?v=13","foto/project-monitoring-siswa/foto-2.png?v=13","foto/project-monitoring-siswa/foto-3.png?v=13","foto/project-monitoring-siswa/foto-4.png?v=13"],
-      "Bimbingan Konseling": ["foto/project-bimbingan-konseling.png"],
+      "Bimbingan Konseling": ["foto/foto-Project-bimbingan-konseling.png?v=17"],
       "Management Toko Baju Online + Kasir": ["foto/project-e-commerce/foto-1.png?v=13","foto/project-e-commerce/foto-2.png?v=13","foto/project-e-commerce/foto-3.png?v=13","foto/project-e-commerce/foto-4.png?v=13"],
       "Management Toko Baju Online + Kasir Toko": ["foto/project-e-commerce/foto-1.png?v=13","foto/project-e-commerce/foto-2.png?v=13","foto/project-e-commerce/foto-3.png?v=13","foto/project-e-commerce/foto-4.png?v=13"]
     };
