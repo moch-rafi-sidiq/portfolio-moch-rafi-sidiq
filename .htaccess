@@ -1,22 +1,31 @@
-<IfModule mod_headers.c>
-  # HTML jangan di-cache sama sekali -> Ctrl+R selalu fresh tanpa perlu hard refresh
+﻿<IfModule mod_headers.c>
+  # HTML - must-revalidate (304) lebih cepat dari no-store, tetap fresh via ?v= & JS busting
   <FilesMatch "\.(html|htm)$">
-    Header set Cache-Control "no-store, no-cache, must-revalidate, max-age=0, no-transform"
+    Header set Cache-Control "no-cache, must-revalidate, max-age=0"
     Header set Pragma "no-cache"
-    Header set Expires "Thu, 01 Jan 1970 00:00:00 GMT"
-    Header set X-Cache-Buster "v20260916-1200"
+    Header unset Expires
+    Header set X-Cache-Buster "v20260916-1610"
   </FilesMatch>
-  # Assets boleh cache 1 minggu tapi pakai ?v= untuk busting
+  # Assets - cache 1 tahun + immutable, bust via ?v=
   <FilesMatch "\.(css|js|png|jpg|jpeg|gif|webp|svg|ico|woff2?)$">
-    Header set Cache-Control "public, max-age=604800, must-revalidate"
+    Header set Cache-Control "public, max-age=31536000, immutable"
+    Header unset Pragma
   </FilesMatch>
 </IfModule>
 <IfModule mod_expires.c>
-  ExpiresActive Off
+  ExpiresActive On
+  ExpiresByType text/html "access plus 0 seconds"
+  ExpiresByType text/css "access plus 1 year"
+  ExpiresByType application/javascript "access plus 1 year"
+  ExpiresByType image/png "access plus 1 year"
+  ExpiresByType image/jpeg "access plus 1 year"
+  ExpiresByType image/webp "access plus 1 year"
+  ExpiresByType image/svg+xml "access plus 1 year"
+  ExpiresByType font/woff2 "access plus 1 year"
+  ExpiresByType font/woff "access plus 1 year"
 </IfModule>
-FileETag None
-# Matikan ETag & Last-Modified untuk HTML agar tidak 304 stale
-<FilesMatch "\.(html|htm)$">
-  Header unset ETag
-  Header unset Last-Modified
-</FilesMatch>
+<IfModule mod_deflate.c>
+  AddOutputFilterByType DEFLATE text/html text/css application/javascript application/json image/svg+xml text/plain
+</IfModule>
+FileETag MTime Size
+

@@ -4,11 +4,15 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <!-- FIX CACHE: paksa no-store agar Ctrl+R tidak serve versi lama (tanpa ini hard refresh saja yang fresh) -->
-  <meta http-equiv="Cache-Control" content="no-store, no-cache, must-revalidate, max-age=0" />
+  <!-- CACHE: must-revalidate (304) lebih cepat dari no-store, bust via ?v= -->
+  <meta http-equiv="Cache-Control" content="no-cache, must-revalidate, max-age=0" />
   <meta http-equiv="Pragma" content="no-cache" />
   <meta http-equiv="Expires" content="0" />
-  <meta name="cache-version" content="v20260916-1550" />
+  <meta name="cache-version" content="v20260916-1610" />
+  <link rel="preload" as="image" href="./foto/foto-profil.png" fetchpriority="high" />
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin />
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin />
+  <link rel="dns-prefetch" href="https://cdn.tailwindcss.com" />
   <script>
     // FIX BUG REFRESH + CACHE: paksa scroll ke atas & deteksi cache basi
     try { if ('scrollRestoration' in history) history.scrollRestoration = 'manual'; } catch(e){}
@@ -1410,7 +1414,7 @@
           <div class="image-glow"></div>
 
           <div class="blob-border">
-            <img src="./foto/foto-profil.png" alt="Foto Profil Moch Rafi Sidiq" loading="eager">
+            <img src="./foto/foto-profil.png" alt="Foto Profil Moch Rafi Sidiq" loading="eager" fetchpriority="high" decoding="async" width="500" height="560">
           </div>
         </div>
 
@@ -1598,7 +1602,7 @@
         <!-- 1. Website Profile SMK BPPI -->
         <div class="project-card glass">
           <div class="project-image-wrap" onclick="openLightbox('foto/project-web-smk-bppi/foto-1.png?v=13', 'Website Profile SMK BPPI', 'Website resmi SMK BPPI Baleendah')">
-            <img src="foto/project-web-smk-bppi/foto-1.png?v=13" alt="Preview Website SMK BPPI Baleendah" loading="lazy" onerror="this.src='https://via.placeholder.com/600x360/0F172A/60A5FA?text=SMK+BPPI+Baleendah'">
+            <img src="foto/project-web-smk-bppi/foto-1.png?v=13" alt="Preview Website SMK BPPI Baleendah" loading="lazy" onerror="this.src='https://via.placeholder.com/600x360/0F172A/60A5FA?text=SMK+BPPI+Baleendah'" decoding="async">
           </div>
           <div class="project-content">
             <h3>Website Profile SMK BPPI</h3>
@@ -1623,7 +1627,7 @@
         <!-- 2. Bank Mini SMK BPPI -->
         <div class="project-card glass">
           <div class="project-image-wrap" onclick="openLightbox('foto/project-bankmini/foto-1.png?v=13', 'Bank Mini SMK BPPI', 'Platform menabung digital SMK BPPI')">
-            <img src="foto/project-bankmini/foto-1.png?v=13" alt="Preview Website Bank Mini" loading="lazy" onerror="this.src='https://via.placeholder.com/600x360/0F172A/60A5FA?text=Bank+Mini'">
+            <img src="foto/project-bankmini/foto-1.png?v=13" alt="Preview Website Bank Mini" loading="lazy" onerror="this.src='https://via.placeholder.com/600x360/0F172A/60A5FA?text=Bank+Mini'" decoding="async">
           </div>
           <div class="project-content">
             <h3>Bank Mini SMK BPPI</h3>
@@ -1648,7 +1652,7 @@
         <!-- 3. Management Kas Kelas -->
         <div class="project-card glass">
           <div class="project-image-wrap" onclick="openLightbox('foto/project-management-kas-kelas/foto-1.png?v=14', 'Management Kas Kelas', 'Aplikasi manajemen kas kelas')">
-            <img src="foto/project-management-kas-kelas/foto-1.png?v=14" alt="Preview Management Kas Kelas" loading="lazy" onerror="this.src='https://via.placeholder.com/600x360/0F172A/60A5FA?text=Management+Kas+Kelas'">
+            <img src="foto/project-management-kas-kelas/foto-1.png?v=14" alt="Preview Management Kas Kelas" loading="lazy" onerror="this.src='https://via.placeholder.com/600x360/0F172A/60A5FA?text=Management+Kas+Kelas'" decoding="async">
           </div>
           <div class="project-content">
             <h3>Management Kas Kelas</h3>
@@ -1673,7 +1677,7 @@
         <!-- 4. Booking Haircut Cukur Routine -->
         <div class="project-card glass">
           <div class="project-image-wrap" onclick="openLightbox('foto/project-Booking-Haircut-Cukur-Routine/foto-1.png?v=13', 'Booking Haircut Cukur Routine', 'Aplikasi booking antrian barbershop')">
-            <img src="foto/project-Booking-Haircut-Cukur-Routine/foto-1.png?v=13" alt="Preview Cukur Routine" loading="lazy" onerror="this.src='https://via.placeholder.com/600x360/0F172A/60A5FA?text=Cukur+Routine'">
+            <img src="foto/project-Booking-Haircut-Cukur-Routine/foto-1.png?v=13" alt="Preview Cukur Routine" loading="lazy" onerror="this.src='https://via.placeholder.com/600x360/0F172A/60A5FA?text=Cukur+Routine'" decoding="async">
           </div>
           <div class="project-content">
             <h3>Booking Haircut Cukur Routine</h3>
@@ -1698,7 +1702,7 @@
         <!-- 5. ERP SJ Textile -->
         <div class="project-card glass">
           <div class="project-image-wrap" onclick="openLightbox('foto/project-ERP-SJTextile/foto-1.png?v=13', 'ERP SJ Textile', 'ERP terpadu Sentra Jaya Textile')">
-            <img src="foto/project-ERP-SJTextile/foto-1.png?v=13" alt="Preview ERP SJ Textile" loading="lazy" onerror="this.src='https://via.placeholder.com/600x360/0F172A/60A5FA?text=ERP+SJ+Textile'">
+            <img src="foto/project-ERP-SJTextile/foto-1.png?v=13" alt="Preview ERP SJ Textile" loading="lazy" onerror="this.src='https://via.placeholder.com/600x360/0F172A/60A5FA?text=ERP+SJ+Textile'" decoding="async">
           </div>
           <div class="project-content">
             <h3>ERP SJ Textile</h3>
@@ -1721,7 +1725,7 @@
         <!-- 6. Monitoring PKL -->
         <div class="project-card glass">
           <div class="project-image-wrap" onclick="openLightbox('foto/project-monitoring-pkl/foto-1.png?v=13', 'Monitoring PKL', 'Sistem monitoring Praktik Kerja Lapangan')">
-            <img src="foto/project-monitoring-pkl/foto-1.png?v=13" alt="Preview Monitoring PKL" loading="lazy" onerror="this.src='https://via.placeholder.com/600x360/0F172A/60A5FA?text=Monitoring+PKL'">
+            <img src="foto/project-monitoring-pkl/foto-1.png?v=13" alt="Preview Monitoring PKL" loading="lazy" onerror="this.src='https://via.placeholder.com/600x360/0F172A/60A5FA?text=Monitoring+PKL'" decoding="async">
           </div>
           <div class="project-content">
             <h3>Monitoring PKL</h3>
@@ -1744,7 +1748,7 @@
         <!-- 7. Restoran -->
         <div class="project-card glass">
           <div class="project-image-wrap" onclick="openLightbox('foto/project-restoran/foto-1.png?v=13', 'Restoran', 'Website & sistem manajemen restoran')">
-            <img src="foto/project-restoran/foto-1.png?v=13" alt="Preview Restoran" loading="lazy" onerror="this.src='https://via.placeholder.com/600x360/0F172A/60A5FA?text=Restoran'">
+            <img src="foto/project-restoran/foto-1.png?v=13" alt="Preview Restoran" loading="lazy" onerror="this.src='https://via.placeholder.com/600x360/0F172A/60A5FA?text=Restoran'" decoding="async">
           </div>
           <div class="project-content">
             <h3>Restoran</h3>
@@ -1767,7 +1771,7 @@
         <!-- 8. Monitoring Siswa (Web & Aplikasi Mobile) -->
         <div class="project-card glass">
           <div class="project-image-wrap" onclick="openLightbox('foto/project-monitoring-siswa/foto-1.png?v=13', 'Monitoring Siswa', 'Website & Aplikasi monitoring perkembangan siswa â€” Web & Mobile App')">
-            <img src="foto/project-monitoring-siswa/foto-1.png?v=13" alt="Preview Monitoring Siswa" loading="lazy" onerror="this.src='https://via.placeholder.com/600x360/0F172A/60A5FA?text=Monitoring+Siswa'">
+            <img src="foto/project-monitoring-siswa/foto-1.png?v=13" alt="Preview Monitoring Siswa" loading="lazy" onerror="this.src='https://via.placeholder.com/600x360/0F172A/60A5FA?text=Monitoring+Siswa'" decoding="async">
           </div>
           <div class="project-content">
             <h3>Monitoring Siswa</h3>
@@ -1792,7 +1796,7 @@
         <!-- 9. Bimbingan Konseling -->
         <div class="project-card glass">
           <div class="project-image-wrap" onclick="openLightbox('foto/project-bimbingan-konseling.png', 'Bimbingan Konseling', 'Sistem pencatatan kasus BK')">
-            <img src="foto/project-bimbingan-konseling.png" alt="Preview Bimbingan Konseling" loading="lazy" onerror="this.src='https://via.placeholder.com/600x360/0F172A/60A5FA?text=Bimbingan+Konseling'">
+            <img src="foto/project-bimbingan-konseling.png" alt="Preview Bimbingan Konseling" loading="lazy" onerror="this.src='https://via.placeholder.com/600x360/0F172A/60A5FA?text=Bimbingan+Konseling'" decoding="async">
           </div>
           <div class="project-content">
             <h3>Bimbingan Konseling</h3>
@@ -1815,7 +1819,7 @@
         <!-- 10. Management Toko Baju Online + Kasir Toko (E-Commerce) -->
         <div class="project-card glass">
           <div class="project-image-wrap" onclick="openLightbox('foto/project-e-commerce/foto-1.png?v=13', 'Management Toko Baju Online + Kasir', 'Toko online + POS kasir')">
-            <img src="foto/project-e-commerce/foto-1.png?v=13" alt="Preview Toko Baju Online + Kasir" loading="lazy" onerror="this.src='https://via.placeholder.com/600x360/0F172A/60A5FA?text=Toko+Baju+%2B+Kasir'">
+            <img src="foto/project-e-commerce/foto-1.png?v=13" alt="Preview Toko Baju Online + Kasir" loading="lazy" onerror="this.src='https://via.placeholder.com/600x360/0F172A/60A5FA?text=Toko+Baju+%2B+Kasir'" decoding="async">
           </div>
           <div class="project-content">
             <h3>Management Toko Baju Online + Kasir Toko</h3>
@@ -1900,7 +1904,7 @@
     <button class="lightbox-nav lightbox-next hidden" onclick="lightboxNext()" aria-label="Foto selanjutnya"><i class="fa-solid fa-chevron-right"></i></button>
     <div class="lightbox-content" onclick="event.stopPropagation()">
       <div id="lightbox-counter" class="lightbox-counter hidden"></div>
-      <img id="lightbox-img" src="" alt="Project Preview">
+      <img id="lightbox-img" src="" alt="Project Preview" decoding="async" loading="lazy">
       <div class="lightbox-caption">
         <span id="lightbox-title"></span>
         <span id="lightbox-desc" style="color:#60A5FA;"></span>
@@ -2404,6 +2408,8 @@
   </script>
 
 </body>
+
+
 
 
 
