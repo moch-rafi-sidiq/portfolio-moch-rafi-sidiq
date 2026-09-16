@@ -396,11 +396,15 @@
     }
 
     /* FIX jarak 3 card bawah rata: grid same gap, semua card tinggi sama */
+    /* collapsed 3 card: 3 kolom full (tanpa sisa kosong di kanan) */
+    .skills-grid[data-state="collapsed"] { grid-template-columns: repeat(3, 1fr); }
     @media(max-width:1100px) and (min-width:901px){
       .skills-grid{ grid-template-columns: repeat(3, 1fr); }
+      .skills-grid[data-state="collapsed"]{ grid-template-columns: repeat(3, 1fr); }
     }
     @media(max-width:900px) and (min-width:551px){
       .skills-grid{ grid-template-columns: repeat(2, 1fr); gap: 20px; }
+      .skills-grid[data-state="collapsed"]{ grid-template-columns: repeat(2, 1fr); }
     }
 
     section {
@@ -1677,7 +1681,7 @@
         <h2>My Skills</h2>
       </div>
 
-      <div class="skills-grid">
+      <div class="skills-grid" data-state="collapsed">
 
         <div class="skill-card glass">
           <i class="fa-brands fa-html5" style="color:#f97316;"></i>
@@ -2505,6 +2509,8 @@
       if (cards.length <= SKILLS_LIMIT) {
         wrap.style.display = 'none';
         cards.forEach(c => c.classList.remove('hidden-skill'));
+        const g = document.querySelector('.skills-grid');
+        if(g) g.dataset.state = 'collapsed';
         return;
       }
       skillsExpanded = false;
@@ -2515,6 +2521,8 @@
       const hiddenCount = cards.length - SKILLS_LIMIT;
       btnText.textContent = `Lihat Semua Skills (+${hiddenCount} lainnya)`;
       wrap.style.display = 'block';
+      const gridCollapsed = document.querySelector('.skills-grid');
+      if(gridCollapsed) gridCollapsed.dataset.state = 'collapsed';
       updateSkillsBtn();
       if (window.ScrollTrigger) setTimeout(function(){ ScrollTrigger.refresh(); }, 50);
     }
@@ -2552,10 +2560,14 @@
           hiddenCards.forEach(c => { c.style.transform = "none"; c.style.opacity = "1"; });
         }
         skillsExpanded = true;
+        const gridExp = document.querySelector('.skills-grid');
+        if(gridExp) gridExp.dataset.state = 'expanded';
         if (window.ScrollTrigger) setTimeout(function(){ ScrollTrigger.refresh(); }, 100);
       } else {
         hiddenCards.forEach(card => card.classList.add('hidden-skill'));
         skillsExpanded = false;
+        const gridCol = document.querySelector('.skills-grid');
+        if(gridCol) gridCol.dataset.state = 'collapsed';
         document.getElementById('skills').scrollIntoView({ behavior: 'smooth', block: 'start' });
         if (window.ScrollTrigger) setTimeout(function(){ ScrollTrigger.refresh(); }, 400);
       }
