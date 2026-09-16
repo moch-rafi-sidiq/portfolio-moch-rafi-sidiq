@@ -47,15 +47,30 @@
   <style>
     .hero-glow, .image-glow, .hero-image-area::after { display: none !important; }
     * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; }
-    html { scroll-behavior: smooth; }
+    html { scroll-behavior: smooth; overflow-x: clip; overflow-y: auto; max-width: 100%; scrollbar-width: thin; scrollbar-color: #2563EB #07111F; }
+    ::-webkit-scrollbar { width: 8px; height: 8px; }
+    ::-webkit-scrollbar-track { background: #07111F; }
+    ::-webkit-scrollbar-thumb { background: #2563EB; border-radius: 999px; }
+    ::-webkit-scrollbar-thumb:hover { background: #1d4ed8; }
+    /* Lenis smooth scroll - FIX double scrollbar */
+    html.lenis, html.lenis body { height: auto; }
+    .lenis.lenis-smooth { scroll-behavior: auto !important; }
+    .lenis.lenis-smooth [data-lenis-prevent] { overscroll-behavior: contain; }
+    .lenis.lenis-stopped { overflow: hidden; }
     body {
       background:
         radial-gradient(circle at top left, rgba(59, 130, 246, .15), transparent 35%),
         radial-gradient(circle at bottom right, rgba(37, 99, 235, .12), transparent 35%),
         #07111F;
       color: #F8FAFC;
+      overflow: clip;
+      width: 100%;
+      max-width: 100%;
     }
-    .container { width: 90%; max-width: 1300px; margin: auto; }
+    .container { width: 100%; max-width: 1300px; margin: 0 auto; padding: 0 24px; box-sizing: border-box; }
+    img, video, iframe { max-width: 100%; }
+    section { max-width: 100%; overflow: clip; box-sizing: border-box; }
+    .projects-grid { max-width: 100%; min-width: 0; box-sizing: border-box; }
     .glass {
       background: rgba(15, 23, 42, .75);
       border: 1px solid rgba(148, 163, 184, .12);
@@ -74,7 +89,7 @@
       -webkit-text-fill-color: transparent;
     }
     nav {
-      position: fixed; top: 16px; left: 0; width: 100%; z-index: 1000; transition: transform 0.3s ease;
+      position: fixed; top: 16px; left: 0; right: 0; width: 100%; max-width: 100%; box-sizing: border-box; z-index: 1000; transition: transform 0.3s ease;
     }
     .logo span { color: #2563EB; }
     .menu { display: flex; gap: 35px; transition: all 0.3s ease; }
@@ -107,7 +122,7 @@
     .hamburger i { transition: all 0.3s ease; }
     .hamburger.active i { transform: rotate(90deg); }
     @media(max-width:950px){
-      .container { padding: 0 15px; width: 100%; }
+      .container { padding: 0 16px; width: 100%; box-sizing: border-box; }
       .menu { display: none; }
       .navbar {
         width: 100% !important; max-width: 100% !important;
@@ -126,7 +141,7 @@
     }
     .section-title { margin-bottom: 60px; }
     .section-title p { color: #60A5FA; margin-bottom: 10px; }
-    .section-title h2 { font-size: 58px; font-weight: 800; letter-spacing: -2px; }
+    .section-title h2 { font-size: clamp(28px, 5vw, 58px); font-weight: 800; letter-spacing: -2px; max-width: 100%; overflow-wrap: break-word; word-break: break-word; }
     @media(max-width:550px){
       .section-title h2 { font-size: 32px; }
     }
@@ -281,6 +296,13 @@
       .lightbox-prev { left: 8px; }
       .lightbox-next { right: 8px; }
       .lightbox-counter { top: -38px; font-size: 12px; padding: 5px 12px; }
+    }
+    /* FIX simetris & anti overflow grid di HP */
+    @media(max-width:600px){
+      .projects-grid { grid-template-columns: 1fr !important; gap: 20px !important; }
+      .project-content h3 { font-size: 22px; }
+      .project-content p, .project-desc { font-size: 13px; }
+      .tag { font-size: 11px; padding: 6px 12px; }
     }
     .back-link {
       display: inline-flex; align-items: center; gap: 8px; color: #60A5FA;
