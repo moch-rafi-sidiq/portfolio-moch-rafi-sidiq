@@ -1,0 +1,22 @@
+<IfModule mod_headers.c>
+  # HTML jangan di-cache sama sekali -> Ctrl+R selalu fresh tanpa perlu hard refresh
+  <FilesMatch "\.(html|htm)$">
+    Header set Cache-Control "no-store, no-cache, must-revalidate, max-age=0, no-transform"
+    Header set Pragma "no-cache"
+    Header set Expires "Thu, 01 Jan 1970 00:00:00 GMT"
+    Header set X-Cache-Buster "v20260916-1200"
+  </FilesMatch>
+  # Assets boleh cache 1 minggu tapi pakai ?v= untuk busting
+  <FilesMatch "\.(css|js|png|jpg|jpeg|gif|webp|svg|ico|woff2?)$">
+    Header set Cache-Control "public, max-age=604800, must-revalidate"
+  </FilesMatch>
+</IfModule>
+<IfModule mod_expires.c>
+  ExpiresActive Off
+</IfModule>
+FileETag None
+# Matikan ETag & Last-Modified untuk HTML agar tidak 304 stale
+<FilesMatch "\.(html|htm)$">
+  Header unset ETag
+  Header unset Last-Modified
+</FilesMatch>

@@ -1,0 +1,962 @@
+﻿<!DOCTYPE html>
+<html lang="id">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <!-- FIX CACHE: paksa no-store agar Ctrl+R tidak serve versi lama -->
+  <meta http-equiv="Cache-Control" content="no-store, no-cache, must-revalidate, max-age=0" />
+  <meta http-equiv="Pragma" content="no-cache" />
+  <meta http-equiv="Expires" content="0" />
+  <meta name="cache-version" content="v20260916-1550" />
+  <script>
+    try { if ('scrollRestoration' in history) history.scrollRestoration = 'manual'; } catch(e){}
+    window.scrollTo(0, 0);
+    document.addEventListener('DOMContentLoaded', function(){ window.scrollTo(0,0); });
+    window.addEventListener('pageshow', function(e){
+      if (e.persisted) { window.scrollTo(0,0); location.reload(); }
+    });
+    (function(){
+      try{
+        var NAV = performance.getEntriesByType('navigation')[0];
+        if(NAV && NAV.transferSize === 0 && NAV.type !== 'reload'){
+          var k='__cacheBust_'+location.pathname;
+          var last=sessionStorage.getItem(k);
+          var now=Date.now();
+          if(!last || (now - parseInt(last,10) > 5000)){
+            sessionStorage.setItem(k, String(now));
+            var url=location.href.split('#')[0].split('?')[0]+'?v='+now+(location.hash||'');
+            setTimeout(function(){ location.replace(url); }, 50);
+          }
+        }
+      }catch(e){}
+    })();
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/@iconify/iconify@1.0.7/dist/iconify.min.js"></script>
+  <title>Semua Project | Moch Rafi Sidiq</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.42/bundled/lenis.min.js"></script>
+  <style>
+    .hero-glow, .image-glow, .hero-image-area::after { display: none !important; }
+    * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; }
+    html { scroll-behavior: smooth; }
+    body {
+      background:
+        radial-gradient(circle at top left, rgba(59, 130, 246, .15), transparent 35%),
+        radial-gradient(circle at bottom right, rgba(37, 99, 235, .12), transparent 35%),
+        #07111F;
+      color: #F8FAFC;
+    }
+    .container { width: 90%; max-width: 1300px; margin: auto; }
+    .glass {
+      background: rgba(15, 23, 42, .75);
+      border: 1px solid rgba(148, 163, 184, .12);
+      backdrop-filter: blur(14px);
+      transition: .4s;
+      transform-style: preserve-3d;
+    }
+    .glass:hover {
+      border-color: rgba(59, 130, 246, .5);
+      box-shadow: 0 0 50px rgba(37, 99, 235, .2), inset 0 0 20px rgba(255,255,255,.03);
+    }
+    .gradient-text {
+      background: linear-gradient(to right, #60A5FA, #2563EB, #60A5FA);
+      background-size: 200% auto;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    nav {
+      position: fixed; top: 16px; left: 0; width: 100%; z-index: 1000; transition: transform 0.3s ease;
+    }
+    .logo span { color: #2563EB; }
+    .menu { display: flex; gap: 35px; transition: all 0.3s ease; }
+    .menu a { color: #cbd5e1; text-decoration: none; transition: .3s; font-size: 15px; }
+    .menu a:hover { color: #60A5FA; }
+    .navbar {
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 10px 20px; border-radius: 20px; gap: 10px; flex-wrap: nowrap;
+      padding-top: 18px; padding-bottom: 18px;
+    }
+    .logo { font-size: 16px; font-weight: 800; white-space: nowrap; flex-shrink: 0; }
+    .hamburger {
+      display: none; cursor: pointer; font-size: 20px; color: white;
+      background: rgba(37, 99, 235, 0.2); width: 36px; height: 36px;
+      border-radius: 10px; align-items: center; justify-content: center; flex-shrink: 0;
+      transition: all 0.3s ease;
+    }
+    .hamburger.active { background: #2563EB; transform: rotate(90deg); }
+    .menu.active {
+      display: flex !important; position: absolute; top: 75px; right: 20px;
+      width: 100px; background: rgba(15, 23, 42, .90); backdrop-filter: blur(1px);
+      flex-direction: column; padding: 20px; border-radius: 20px; gap: 15px;
+      z-index: 1000; border: 1px solid rgba(59, 130, 246, 0.3);
+      animation: slideIn 0.3s ease forwards;
+    }
+    @keyframes slideIn {
+      from { opacity: 0; transform: translateY(-20px) scale(0.95); }
+      to { opacity: 1; transform: translateY(0) scale(1); }
+    }
+    .hamburger i { transition: all 0.3s ease; }
+    .hamburger.active i { transform: rotate(90deg); }
+    @media(max-width:950px){
+      .container { padding: 0 15px; width: 100%; }
+      .menu { display: none; }
+      .navbar {
+        width: 100% !important; max-width: 100% !important;
+        padding: 6px 20px !important; margin: 0 !important;
+        display: flex !important; justify-content: space-between !important; align-items: center !important;
+        gap: 12px !important; box-sizing: border-box !important;
+      }
+      .logo { font-size: 18px !important; flex-shrink: 1 !important; overflow: hidden !important; white-space: nowrap !important; text-overflow: ellipsis !important; max-width: 65% !important; }
+      .hamburger { display: flex !important; flex-shrink: 0 !important; width: 48px !important; height: 48px !important; font-size: 24px !important; }
+    }
+    section { padding: 130px 0; position: relative; }
+    section::before {
+      content: ''; position: absolute; top: 0; left: 50%; transform: translateX(-50%);
+      width: 80%; height: 1px;
+      background: linear-gradient(to right, transparent, rgba(59,130,246,.2), transparent);
+    }
+    .section-title { margin-bottom: 60px; }
+    .section-title p { color: #60A5FA; margin-bottom: 10px; }
+    .section-title h2 { font-size: 58px; font-weight: 800; letter-spacing: -2px; }
+    @media(max-width:550px){
+      .section-title h2 { font-size: 32px; }
+    }
+    .projects-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 30px;
+    }
+    .project-card { overflow: hidden; border-radius: 30px; position: relative; box-shadow: 0 10px 40px rgba(0,0,0,.25); }
+    .project-card::before { display: none; }
+    .project-content { position: relative; z-index: 2; margin-top: 0; padding: 30px; }
+    /* gradient hanya di carousel, tidak nutupin judul */
+    .project-carousel::after {
+      content: ''; position: absolute; left: 0; right: 0; bottom: 0; height: 60px;
+      background: linear-gradient(to top, rgba(7,17,31,.45), transparent);
+      z-index: 3; pointer-events: none;
+    }
+    .project-content h3 { font-size: 28px; margin-bottom: 15px; }
+    .project-content p { color: #94A3B8; line-height: 1.7; margin-bottom: 0; }
+    .project-desc { color: #94A3B8; line-height: 1.7; font-size: 15px; }
+    .project-info {
+      margin-top: 18px; padding-top: 16px; border-top: 1px solid rgba(148,163,184,.12);
+      display: flex; flex-direction: column; gap: 6px; font-size: 13px; line-height: 1.6;
+    }
+    .project-info span { color: #94A3B8; display: flex; align-items: center; gap: 8px; }
+    .project-info strong { color: #E2E8F0; font-weight: 600; min-width: 52px; }
+    .project-info .info-value { color: #CBD5E1; font-weight: 500; }
+    .project-info .status-live { color: #4ade80; font-weight: 600; }
+    .project-info .status-live .dot {
+      width: 7px; height: 7px; background: #22c55e; border-radius: 50%;
+      display: inline-block; box-shadow: 0 0 6px rgba(34,197,94,.6); flex-shrink: 0;
+    }
+    .tags { display: flex; gap: 10px; flex-wrap: wrap; }
+    .tag { padding: 10px 18px; border-radius: 999px; background: rgba(37,99,235,.15); color: #60A5FA; font-size: 14px; }
+    .project-links { margin-top: auto; padding-top: 28px; }
+    .btn-demo {
+      background: #2563EB; color: white; display: inline-flex; align-items: center;
+      gap: 8px; width: 100%; justify-content: center; padding: 12px 20px;
+      border-radius: 40px; font-weight: 600; text-decoration: none; transition: 0.3s;
+    }
+    .btn-demo:hover { background: #1d4ed8; transform: translateY(-3px); }
+    /* CAROUSEL */
+    .project-carousel {
+      position: relative; overflow: hidden; cursor: grab; user-select: none;
+      height: 240px; background: #0F172A;
+    }
+    .project-carousel:active { cursor: grabbing; }
+    .carousel-track {
+      display: flex; height: 100%; transition: transform 0.5s cubic-bezier(0.4,0,0.2,1);
+      will-change: transform;
+    }
+    .carousel-track.dragging { transition: none; }
+    .carousel-track img {
+      min-width: 100%; width: 100%; height: 240px; object-fit: cover; object-position: top center;
+      flex-shrink: 0; pointer-events: none;
+    }
+    .carousel-track img.clickable { pointer-events: auto; cursor: zoom-in; }
+    .carousel-btn {
+      position: absolute; top: 50%; transform: translateY(-50%);
+      width: 36px; height: 36px; border-radius: 50%;
+      background: rgba(15,23,42,.85); border: 1px solid rgba(255,255,255,.15);
+      color: white; display: flex; align-items: center; justify-content: center;
+      cursor: pointer; transition: .2s; z-index: 5; font-size: 14px;
+    }
+    .carousel-btn:hover { background: #2563EB; border-color: #2563EB; transform: translateY(-50%) scale(1.05); }
+    .carousel-prev { left: 12px; }
+    .carousel-next { right: 12px; }
+    .carousel-dots {
+      position: absolute; bottom: 12px; left: 50%; transform: translateX(-50%);
+      display: flex; gap: 6px; z-index: 5;
+    }
+    .carousel-dots span {
+      width: 7px; height: 7px; border-radius: 50%; background: rgba(255,255,255,.4);
+      cursor: pointer; transition: .3s; display: block;
+    }
+    .carousel-dots span.active {
+      background: white; width: 22px; border-radius: 999px;
+    }
+    .carousel-counter {
+      position: absolute; top: 10px; right: 10px;
+      background: rgba(15,23,42,.9); border: 1px solid rgba(255,255,255,.1);
+      color: #94A3B8; font-size: 11px; padding: 4px 10px; border-radius: 999px; z-index: 5;
+    }
+    .carousel-hint {
+      position: absolute; bottom: 12px; left: 12px; z-index: 5;
+      background: rgba(15,23,42,.85); border: 1px solid rgba(255,255,255,.1);
+      color: #94A3B8; font-size: 10px; padding: 4px 8px; border-radius: 999px;
+      display: none;
+    }
+    @media(max-width:550px){ .carousel-hint { display: block; } }
+    /* LIGHTBOX */
+    .lightbox {
+      display: none; position: fixed; inset: 0; z-index: 2000;
+      background: rgba(7,17,31,0.92); backdrop-filter: blur(8px);
+      align-items: center; justify-content: center; padding: 20px; opacity: 0; transition: opacity 0.3s ease;
+    }
+    .lightbox.active { display: flex; opacity: 1; }
+    .lightbox-content {
+      position: relative; max-width: 95vw; max-height: 92vh;
+      display: flex; flex-direction: column; align-items: center;
+      animation: lightboxZoom 0.35s ease;
+    }
+    @keyframes lightboxZoom { from { transform: scale(0.9); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+    .lightbox-content img {
+      max-width: 100%; max-height: 85vh; object-fit: contain; border-radius: 16px;
+      box-shadow: 0 20px 80px rgba(0,0,0,0.6), 0 0 0 1px rgba(255,255,255,0.1);
+    }
+    .lightbox-caption { margin-top: 16px; color: #F8FAFC; font-size: 18px; font-weight: 600; text-align: center; }
+    .lightbox-caption span { display: block; font-size: 14px; font-weight: 400; color: #94A3B8; margin-top: 4px; }
+    .lightbox-close {
+      position: absolute; top: 20px; right: 20px; width: 44px; height: 44px; border-radius: 12px;
+      background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.15);
+      color: #fff; font-size: 22px; cursor: pointer; display: flex; align-items: center; justify-content: center;
+      transition: .2s; z-index: 2001;
+    }
+    .lightbox-close:hover { background: #ef4444; border-color: #ef4444; transform: rotate(90deg); }
+    /* Lightbox Gallery Nav - Swipe support */
+    .lightbox-nav {
+      position: absolute; top: 50%; transform: translateY(-50%);
+      width: 48px; height: 48px; border-radius: 999px;
+      background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.15);
+      color: #fff; font-size: 18px; cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      transition: .2s; z-index: 2002; backdrop-filter: blur(6px);
+    }
+    .lightbox-nav:hover { background: #2563EB; border-color: #2563EB; transform: translateY(-50%) scale(1.05); }
+    .lightbox-nav:active { transform: translateY(-50%) scale(0.95); }
+    .lightbox-prev { left: 20px; }
+    .lightbox-next { right: 20px; }
+    .lightbox-nav.hidden { display: none !important; }
+    .lightbox-counter {
+      position: absolute; top: -44px; left: 50%; transform: translateX(-50%);
+      background: rgba(15,23,42,0.9); border: 1px solid rgba(255,255,255,0.12);
+      color: #E2E8F0; font-size: 13px; font-weight: 600; padding: 6px 14px; border-radius: 999px;
+      z-index: 5; white-space: nowrap; letter-spacing: .3px;
+    }
+    .lightbox-dots {
+      display: flex; gap: 7px; margin-top: 14px; align-items: center; justify-content: center;
+    }
+    .lightbox-dots span {
+      width: 8px; height: 8px; border-radius: 999px; background: rgba(255,255,255,0.35);
+      cursor: pointer; transition: .3s; display: block;
+    }
+    .lightbox-dots span.active { background: #60A5FA; width: 24px; }
+    .lightbox-dots.hidden { display: none !important; }
+    .lightbox-hint-bottom {
+      position: absolute; bottom: 20px; left: 50%; transform: translateX(-50%);
+      color: #94A3B8; font-size: 12px; background: rgba(15,23,42,0.8);
+      padding: 8px 16px; border-radius: 999px; border: 1px solid rgba(255,255,255,0.08);
+      white-space: nowrap; text-align: center;
+    }
+    @media(max-width:640px){
+      .lightbox-nav { width: 40px; height: 40px; font-size: 16px; }
+      .lightbox-prev { left: 8px; }
+      .lightbox-next { right: 8px; }
+      .lightbox-counter { top: -38px; font-size: 12px; padding: 5px 12px; }
+    }
+    .back-link {
+      display: inline-flex; align-items: center; gap: 8px; color: #60A5FA;
+      text-decoration: none; font-weight: 600; font-size: 14px; margin-bottom: 30px; transition: .2s;
+    }
+    .back-link:hover { color: #93C5FD; transform: translateX(-4px); }
+  </style>
+</head>
+
+<body>
+  <nav>
+    <div class="container">
+      <div class="navbar glass">
+        <div class="logo">Moch Rafi <span class="gradient-text">Sidiq</span></div>
+        <div class="menu">
+          <a href="index.html#home">Home</a>
+          <a href="index.html#about">About</a>
+          <a href="index.html#skills">Skills</a>
+          <a href="index.html#projects">Projects</a>
+          <a href="index.html#contact">Contact</a>
+        </div>
+        <div class="hamburger" onclick="toggleMenu()"><i class="fa-solid fa-bars"></i></div>
+      </div>
+    </div>
+  </nav>
+
+  <section id="all-projects" style="padding-top:160px;">
+    <div class="container">
+      <div class="section-title">
+        <h2>Semua Project</h2>
+        <p style="color:#94A3B8;margin-top:16px;font-size:16px;max-width:650px;line-height:1.7;">
+          Koleksi lengkap project yang pernah dikerjakan.
+        </p>
+      </div>
+
+      <div class="projects-grid">
+
+        <!-- 1. Website Profile SMK BPPI -->
+        <div class="project-card glass">
+          <div class="project-carousel" data-autoplay="4000">
+            <div class="carousel-track">
+              <img src="foto/project-web-smk-bppi/foto-1.png?v=13" alt="SMK BPPI 1" class="clickable" onerror="this.src='https://via.placeholder.com/600x360/0F172A/60A5FA?text=SMK+BPPI+1'">
+              <img src="foto/project-web-smk-bppi/foto-2.png?v=13" alt="SMK BPPI 2" class="clickable" onerror="this.src='https://via.placeholder.com/600x360/0F172A/60A5FA?text=SMK+BPPI+2'">
+            </div>
+            <button class="carousel-btn carousel-prev" aria-label="Prev"><i class="fa-solid fa-chevron-left"></i></button>
+            <button class="carousel-btn carousel-next" aria-label="Next"><i class="fa-solid fa-chevron-right"></i></button>
+            <div class="carousel-dots"></div>
+            <div class="carousel-counter">1 / 2</div>
+            <div class="carousel-hint"><i class="fa-solid fa-hand"></i> geser</div>
+          </div>
+          <div class="project-content">
+            <h3>Website Profile SMK BPPI</h3>
+            <p class="project-desc">Website resmi SMK BPPI Baleendah. Menyediakan informasi profil sekolah, program keahlian, dan layanan akademik digital untuk siswa.</p>
+            <div class="project-info">
+              <span><strong>Peran</strong> <span class="info-value">Developer Website</span></span>
+              <span><strong>Status</strong> <span class="status-live"><span class="dot"></span> Live</span> <span style="color:#64748b;">sudah hosting & aktif</span></span>
+            </div>
+            <div class="tags" style="margin-top:18px;">
+              <div class="tag">Laravel</div><div class="tag">PHP</div><div class="tag">MySQL</div>
+            </div>
+            <div class="project-links">
+              <a href="https://smk.sekolahbppi.sch.id/home" target="_blank" class="btn-demo"><i class="fa-solid fa-arrow-up-right-from-square"></i> Kunjungi Website</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- 2. Bank Mini SMK BPPI -->
+        <div class="project-card glass">
+          <div class="project-carousel" data-autoplay="4500">
+            <div class="carousel-track">
+              <img src="foto/project-bankmini/foto-1.png?v=13" alt="Bank Mini 1" class="clickable" onerror="this.src='https://via.placeholder.com/600x360/0F172A/60A5FA?text=Bank+Mini+1'">
+              <img src="foto/project-bankmini/foto-2.png?v=13" alt="Bank Mini 2" class="clickable" onerror="this.src='https://via.placeholder.com/600x360/0F172A/60A5FA?text=Bank+Mini+2'">
+              <img src="foto/project-bankmini/foto-3.png?v=13" alt="Bank Mini 3" class="clickable" onerror="this.src='https://via.placeholder.com/600x360/0F172A/60A5FA?text=Bank+Mini+3'">
+              <img src="foto/project-bankmini/foto-4.png?v=13" alt="Bank Mini 4" class="clickable" onerror="this.src='https://via.placeholder.com/600x360/0F172A/60A5FA?text=Bank+Mini+4'">
+            </div>
+            <button class="carousel-btn carousel-prev"><i class="fa-solid fa-chevron-left"></i></button>
+            <button class="carousel-btn carousel-next"><i class="fa-solid fa-chevron-right"></i></button>
+            <div class="carousel-dots"></div>
+            <div class="carousel-counter">1 / 4</div>
+            <div class="carousel-hint"><i class="fa-solid fa-hand"></i> geser</div>
+          </div>
+          <div class="project-content">
+            <h3>Bank Mini SMK BPPI</h3>
+            <p class="project-desc">Platform menabung digital bagi siswa SMK BPPI Baleendah. Memudahkan siswa dalam menyetor tabungan dan memantau saldo secara real-time.</p>
+            <div class="project-info">
+              <span><strong>Peran</strong> <span class="info-value">Developer & Project Leader</span></span>
+              <span><strong>Status</strong> <span class="status-live"><span class="dot"></span> Live</span> <span style="color:#64748b;">sudah hosting & aktif</span></span>
+            </div>
+            <div class="tags" style="margin-top:18px;">
+              <div class="tag">Laravel</div><div class="tag">PHP</div><div class="tag">MySQL</div>
+            </div>
+            <div class="project-links">
+              <a href="https://bankmini.sekolahbppi.sch.id/" target="_blank" class="btn-demo"><i class="fa-solid fa-arrow-up-right-from-square"></i> Kunjungi Website</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- 3. Management Kas Kelas -->
+        <div class="project-card glass">
+          <div class="project-carousel" data-autoplay="5000">
+            <div class="carousel-track">
+              <img src="foto/project-management-kas-kelas/foto-1.png?v=14" alt="Kas Kelas 1" class="clickable" onerror="this.src='https://via.placeholder.com/600x360/0F172A/60A5FA?text=Kas+Kelas+1'">
+              <img src="foto/project-management-kas-kelas/foto-2.png?v=14" alt="Kas Kelas 2" class="clickable" onerror="this.src='https://via.placeholder.com/600x360/0F172A/60A5FA?text=Kas+Kelas+2'">
+              <img src="foto/project-management-kas-kelas/foto-3.png?v=14" alt="Kas Kelas 3" class="clickable" onerror="this.src='https://via.placeholder.com/600x360/0F172A/60A5FA?text=Kas+Kelas+3'">
+            </div>
+            <button class="carousel-btn carousel-prev"><i class="fa-solid fa-chevron-left"></i></button>
+            <button class="carousel-btn carousel-next"><i class="fa-solid fa-chevron-right"></i></button>
+            <div class="carousel-dots"></div>
+            <div class="carousel-counter">1 / 3</div>
+            <div class="carousel-hint"><i class="fa-solid fa-hand"></i> geser</div>
+          </div>
+          <div class="project-content">
+            <h3>Management Kas Kelas</h3>
+            <p class="project-desc">Aplikasi manajemen kas kelas yang membantu guru mengelola keuangan kelas secara efisien dan transparan. Guru dan orang tua dapat memonitor kas secara real-time, sementara bendahara dapat mencatat pemasukan dan pengeluaran tanpa buku besar konvensional.</p>
+            <div class="project-info">
+              <span><strong>Peran</strong> <span class="info-value">Full Stack Developer</span></span>
+              <span><strong>Status</strong> <span style="display:inline-flex;align-items:center;gap:6px;color:#94A3B8;font-weight:600;"><i class="fa-solid fa-lock" style="font-size:11px;"></i> Private</span> <span style="color:#64748b;">demo via request</span></span>
+            </div>
+            <div class="tags" style="margin-top:18px;">
+              <div class="tag">Laravel</div><div class="tag">PHP</div><div class="tag">MySQL</div>
+            </div>
+            <div class="project-links" style="display:flex;flex-direction:column;gap:10px;">
+              <span style="display:flex;align-items:center;justify-content:center;gap:8px;padding:12px 20px;border-radius:40px;background:rgba(148,163,184,.1);border:1px solid rgba(148,163,184,.18);color:#94A3B8;font-weight:600;font-size:14px;"><i class="fa-solid fa-lock"></i> Private Project</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- 4. Booking Haircut Cukur Routine -->
+        <div class="project-card glass">
+          <div class="project-carousel" data-autoplay="4000">
+            <div class="carousel-track">
+              <img src="foto/project-Booking-Haircut-Cukur-Routine/foto-1.png?v=13" alt="Cukur Routine 1" class="clickable" onerror="this.src='https://via.placeholder.com/600x360/0F172A/60A5FA?text=Cukur+Routine+1'">
+              <img src="foto/project-Booking-Haircut-Cukur-Routine/foto-2.png?v=13" alt="Cukur Routine 2" class="clickable" onerror="this.src='https://via.placeholder.com/600x360/0F172A/60A5FA?text=Cukur+Routine+2'">
+              <img src="foto/project-Booking-Haircut-Cukur-Routine/foto-3.png?v=13" alt="Cukur Routine 3" class="clickable" onerror="this.src='https://via.placeholder.com/600x360/0F172A/60A5FA?text=Cukur+Routine+3'">
+              <img src="foto/project-Booking-Haircut-Cukur-Routine/foto-4.png?v=13" alt="Cukur Routine 4" class="clickable" onerror="this.src='https://via.placeholder.com/600x360/0F172A/60A5FA?text=Cukur+Routine+4'">
+              <img src="foto/project-Booking-Haircut-Cukur-Routine/foto-5.png?v=13" alt="Cukur Routine 5" class="clickable" onerror="this.src='https://via.placeholder.com/600x360/0F172A/60A5FA?text=Cukur+Routine+5'">
+            </div>
+            <button class="carousel-btn carousel-prev"><i class="fa-solid fa-chevron-left"></i></button>
+            <button class="carousel-btn carousel-next"><i class="fa-solid fa-chevron-right"></i></button>
+            <div class="carousel-dots"></div>
+            <div class="carousel-counter">1 / 5</div>
+            <div class="carousel-hint"><i class="fa-solid fa-hand"></i> geser</div>
+          </div>
+          <div class="project-content">
+            <h3>Booking Haircut Cukur Routine</h3>
+            <p class="project-desc">Website booking antrian barbershop Cukur Routine. Pelanggan pilih jadwal, layanan, dan barber favorit secara online, pemilik kelola antrian dan laporan pendapatan real-time.</p>
+            <div class="project-info">
+              <span><strong>Peran</strong> <span class="info-value">Full Stack Developer</span></span>
+              <span><strong>Status</strong> <span class="status-live"><span class="dot"></span> Live</span> <span style="color:#64748b;">sudah hosting & aktif</span></span>
+            </div>
+            <div class="tags" style="margin-top:18px;">
+              <div class="tag">Laravel</div><div class="tag">Tailwind</div><div class="tag">MySQL</div>
+            </div>
+            <div class="project-links">
+              <a href="https://cukurroutine.site.je/" target="_blank" class="btn-demo"><i class="fa-solid fa-arrow-up-right-from-square"></i> Kunjungi Website</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- 5. ERP SJ Textile -->
+        <div class="project-card glass">
+          <div class="project-carousel" data-autoplay="4000">
+            <div class="carousel-track">
+              <img src="foto/project-ERP-SJTextile/foto-1.png?v=13" alt="ERP SJ Textile 1" class="clickable" loading="lazy" onerror="this.src='https://via.placeholder.com/600x360/0F172A/60A5FA?text=ERP+SJ+Textile+1'">
+              <img src="foto/project-ERP-SJTextile/foto-2.png?v=13" alt="ERP SJ Textile 2" class="clickable" loading="lazy" onerror="this.src='https://via.placeholder.com/600x360/0F172A/60A5FA?text=ERP+SJ+Textile+2'">
+              <img src="foto/project-ERP-SJTextile/foto-3.png?v=13" alt="ERP SJ Textile 3" class="clickable" loading="lazy" onerror="this.src='https://via.placeholder.com/600x360/0F172A/60A5FA?text=ERP+SJ+Textile+3'">
+            </div>
+            <button class="carousel-btn carousel-prev"><i class="fa-solid fa-chevron-left"></i></button>
+            <button class="carousel-btn carousel-next"><i class="fa-solid fa-chevron-right"></i></button>
+            <div class="carousel-dots"></div>
+            <div class="carousel-counter">1 / 3</div>
+            <div class="carousel-hint"><i class="fa-solid fa-hand"></i> geser</div>
+          </div>
+          <div class="project-content">
+            <h3>ERP SJ Textile</h3>
+            <p class="project-desc">ERP terpadu untuk Sentra Jaya Textile: kelola order reseller, stok kain, produksi, hingga tagihan real-time dalam satu dashboard terintegrasi.</p>
+            <div class="project-info">
+              <span><strong>Peran</strong> <span class="info-value">Full Stack Developer</span></span>
+              <span><strong>Status</strong> <span style="display:inline-flex;align-items:center;gap:6px;color:#94A3B8;font-weight:600;"><i class="fa-solid fa-lock" style="font-size:11px;"></i> Private</span> <span style="color:#64748b;">internal perusahaan</span></span>
+            </div>
+            <div class="tags" style="margin-top:18px;">
+              <div class="tag">Laravel</div><div class="tag">PHP</div><div class="tag">MySQL</div>
+            </div>
+            <div class="project-links" style="display:flex;flex-direction:column;gap:10px;">
+              <span style="display:flex;align-items:center;justify-content:center;gap:8px;padding:12px 20px;border-radius:40px;background:rgba(148,163,184,.1);border:1px solid rgba(148,163,184,.18);color:#94A3B8;font-weight:600;font-size:14px;"><i class="fa-solid fa-lock"></i> Private / Internal</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- 6. Monitoring PKL -->
+        <div class="project-card glass">
+          <div class="project-carousel" data-autoplay="4500">
+            <div class="carousel-track">
+              <img src="foto/project-monitoring-pkl/foto-1.png?v=13" alt="Monitoring PKL 1" class="clickable" loading="lazy" onerror="this.src='https://via.placeholder.com/600x360/0F172A/60A5FA?text=Monitoring+PKL+1'">
+              <img src="foto/project-monitoring-pkl/foto-2.png?v=13" alt="Monitoring PKL 2" class="clickable" loading="lazy" onerror="this.src='https://via.placeholder.com/600x360/0F172A/60A5FA?text=Monitoring+PKL+2'">
+              <img src="foto/project-monitoring-pkl/foto-3.png?v=13" alt="Monitoring PKL 3" class="clickable" loading="lazy" onerror="this.src='https://via.placeholder.com/600x360/0F172A/60A5FA?text=Monitoring+PKL+3'">
+              <img src="foto/project-monitoring-pkl/foto-4.png?v=13" alt="Monitoring PKL 4" class="clickable" loading="lazy" onerror="this.src='https://via.placeholder.com/600x360/0F172A/60A5FA?text=Monitoring+PKL+4'">
+            </div>
+            <button class="carousel-btn carousel-prev"><i class="fa-solid fa-chevron-left"></i></button>
+            <button class="carousel-btn carousel-next"><i class="fa-solid fa-chevron-right"></i></button>
+            <div class="carousel-dots"></div>
+            <div class="carousel-counter">1 / 4</div>
+            <div class="carousel-hint"><i class="fa-solid fa-hand"></i> geser</div>
+          </div>
+          <div class="project-content">
+            <h3>Monitoring PKL</h3>
+            <p class="project-desc">Sistem monitoring PKL siswa SMK. Pembimbing pantau logbook harian, absensi, dan nilai PKL, siswa upload laporan langsung dari lapangan secara digital.</p>
+            <div class="project-info">
+              <span><strong>Peran</strong> <span class="info-value">Full Stack Developer</span></span>
+              <span><strong>Status</strong> <span style="display:inline-flex;align-items:center;gap:6px;color:#94A3B8;font-weight:600;"><i class="fa-solid fa-lock" style="font-size:11px;"></i> Private</span> <span style="color:#64748b;">demo via request</span></span>
+            </div>
+            <div class="tags" style="margin-top:18px;">
+              <div class="tag">Laravel</div><div class="tag">PHP</div><div class="tag">MySQL</div>
+            </div>
+            <div class="project-links" style="display:flex;flex-direction:column;gap:10px;">
+              <span style="display:flex;align-items:center;justify-content:center;gap:8px;padding:12px 20px;border-radius:40px;background:rgba(148,163,184,.1);border:1px solid rgba(148,163,184,.18);color:#94A3B8;font-weight:600;font-size:14px;"><i class="fa-solid fa-lock"></i> Private Project</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- 7. Restoran -->
+        <div class="project-card glass">
+          <div class="project-carousel" data-autoplay="4000">
+            <div class="carousel-track">
+              <img src="foto/project-restoran/foto-1.png?v=13" alt="Restoran 1" class="clickable" loading="lazy" onerror="this.src='https://via.placeholder.com/600x360/0F172A/60A5FA?text=Restoran+1'">
+              <img src="foto/project-restoran/foto-2.png?v=13" alt="Restoran 2" class="clickable" loading="lazy" onerror="this.src='https://via.placeholder.com/600x360/0F172A/60A5FA?text=Restoran+2'">
+              <img src="foto/project-restoran/foto-3.png?v=13" alt="Restoran 3" class="clickable" loading="lazy" onerror="this.src='https://via.placeholder.com/600x360/0F172A/60A5FA?text=Restoran+3'">
+            </div>
+            <button class="carousel-btn carousel-prev"><i class="fa-solid fa-chevron-left"></i></button>
+            <button class="carousel-btn carousel-next"><i class="fa-solid fa-chevron-right"></i></button>
+            <div class="carousel-dots"></div>
+            <div class="carousel-counter">1 / 3</div>
+            <div class="carousel-hint"><i class="fa-solid fa-hand"></i> geser</div>
+          </div>
+          <div class="project-content">
+            <h3>Restoran</h3>
+            <p class="project-desc">Website & sistem manajemen restoran: katalog menu, pemesanan meja, order online, dan manajemen dapur. Desain responsif untuk pelanggan dan admin.</p>
+            <div class="project-info">
+              <span><strong>Peran</strong> <span class="info-value">Full Stack Developer</span></span>
+              <span><strong>Status</strong> <span style="display:inline-flex;align-items:center;gap:6px;color:#94A3B8;font-weight:600;"><i class="fa-solid fa-lock" style="font-size:11px;"></i> Private</span> <span style="color:#64748b;">demo via request</span></span>
+            </div>
+            <div class="tags" style="margin-top:18px;">
+              <div class="tag">Laravel</div><div class="tag">Tailwind</div><div class="tag">MySQL</div>
+            </div>
+            <div class="project-links" style="display:flex;flex-direction:column;gap:10px;">
+              <span style="display:flex;align-items:center;justify-content:center;gap:8px;padding:12px 20px;border-radius:40px;background:rgba(148,163,184,.1);border:1px solid rgba(148,163,184,.18);color:#94A3B8;font-weight:600;font-size:14px;"><i class="fa-solid fa-lock"></i> Private Project</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- 8. Monitoring Siswa -->
+        <div class="project-card glass">
+          <div class="project-carousel" data-autoplay="4000">
+            <div class="carousel-track">
+              <img src="foto/project-monitoring-siswa/foto-1.png?v=13" alt="Monitoring Siswa 1" class="clickable" loading="lazy" onerror="this.src='https://via.placeholder.com/600x360/0F172A/60A5FA?text=Monitoring+Siswa+1'">
+              <img src="foto/project-monitoring-siswa/foto-2.png?v=13" alt="Monitoring Siswa 2" class="clickable" loading="lazy" onerror="this.src='https://via.placeholder.com/600x360/0F172A/60A5FA?text=Monitoring+Siswa+2'">
+              <img src="foto/project-monitoring-siswa/foto-3.png?v=13" alt="Monitoring Siswa 3" class="clickable" loading="lazy" onerror="this.src='https://via.placeholder.com/600x360/0F172A/60A5FA?text=Monitoring+Siswa+3'">
+              <img src="foto/project-monitoring-siswa/foto-4.png?v=13" alt="Monitoring Siswa 4" class="clickable" loading="lazy" onerror="this.src='https://via.placeholder.com/600x360/0F172A/60A5FA?text=Monitoring+Siswa+4'">
+            </div>
+            <button class="carousel-btn carousel-prev"><i class="fa-solid fa-chevron-left"></i></button>
+            <button class="carousel-btn carousel-next"><i class="fa-solid fa-chevron-right"></i></button>
+            <div class="carousel-dots"></div>
+            <div class="carousel-counter">1 / 4</div>
+            <div class="carousel-hint"><i class="fa-solid fa-hand"></i> geser</div>
+          </div>
+          <div class="project-content">
+            <h3>Monitoring Siswa</h3>
+            <p class="project-desc">Website & Aplikasi monitoring perkembangan siswa terintegrasi data akademik dan kehadiran. Guru BK dan wali kelas pantau progres dan beri catatan pembinaan terpusat â€” tersedia versi Web & Mobile App.</p>
+            <div class="project-info">
+              <span><strong>Peran</strong> <span class="info-value">Full Stack Developer</span></span>
+              <span><strong>Status</strong> <span style="display:inline-flex;align-items:center;gap:6px;color:#94A3B8;font-weight:600;"><i class="fa-solid fa-lock" style="font-size:11px;"></i> Private</span> <span style="color:#64748b;">demo via request</span></span>
+            </div>
+            <div class="tags" style="margin-top:18px;">
+              <div class="tag">Laravel</div><div class="tag">PHP</div><div class="tag">MySQL</div><div class="tag">Mobile App</div><div class="tag">Web & App</div>
+            </div>
+            <div class="project-links" style="display:flex;flex-direction:column;gap:10px;">
+              <span style="display:flex;align-items:center;justify-content:center;gap:8px;padding:12px 20px;border-radius:40px;background:rgba(148,163,184,.1);border:1px solid rgba(148,163,184,.18);color:#94A3B8;font-weight:600;font-size:14px;"><i class="fa-solid fa-lock"></i> Private Project</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- 9. Bimbingan Konseling -->
+        <div class="project-card glass">
+          <div class="project-carousel" data-autoplay="4000">
+            <div class="carousel-track">
+              <img src="https://via.placeholder.com/600x360/0F172A/60A5FA?text=BK" alt="Bimbingan Konseling" class="clickable" loading="lazy">
+            </div>
+            <button class="carousel-btn carousel-prev" style="display:none"><i class="fa-solid fa-chevron-left"></i></button>
+            <button class="carousel-btn carousel-next" style="display:none"><i class="fa-solid fa-chevron-right"></i></button>
+            <div class="carousel-dots" style="display:none"></div>
+            <div class="carousel-counter" style="display:none">1 / 1</div>
+          </div>
+          <div class="project-content">
+            <h3>Bimbingan Konseling</h3>
+            <p class="project-desc">Sistem pencatatan kasus Bimbingan dan Konseling berbasis web untuk SMK. Dukung pencatatan kasus berkelanjutan, monitoring perkembangan, dan laporan hasil konseling.</p>
+            <div class="project-info">
+              <span><strong>Peran</strong> <span class="info-value">Project Leader</span></span>
+              <span><strong>Status</strong> <span style="display:inline-flex;align-items:center;gap:6px;color:#94A3B8;font-weight:600;"><i class="fa-solid fa-lock" style="font-size:11px;"></i> Private</span> <span style="color:#64748b;">demo via request</span></span>
+            </div>
+            <div class="tags" style="margin-top:18px;">
+              <div class="tag">Laravel</div><div class="tag">PHP</div><div class="tag">MySQL</div>
+            </div>
+            <div class="project-links" style="display:flex;flex-direction:column;gap:10px;">
+              <span style="display:flex;align-items:center;justify-content:center;gap:8px;padding:12px 20px;border-radius:40px;background:rgba(148,163,184,.1);border:1px solid rgba(148,163,184,.18);color:#94A3B8;font-weight:600;font-size:14px;"><i class="fa-solid fa-lock"></i> Private Project</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- 10. Management Toko Baju Online + Kasir Toko (E-Commerce) -->
+        <div class="project-card glass">
+          <div class="project-carousel" data-autoplay="4000">
+            <div class="carousel-track">
+              <img src="foto/project-e-commerce/foto-1.png?v=13" alt="Toko Baju 1" class="clickable" onerror="this.src='https://via.placeholder.com/600x360/0F172A/60A5FA?text=Toko+Baju+1'">
+              <img src="foto/project-e-commerce/foto-2.png?v=13" alt="Toko Baju 2" class="clickable" onerror="this.src='https://via.placeholder.com/600x360/0F172A/60A5FA?text=Toko+Baju+2'">
+              <img src="foto/project-e-commerce/foto-3.png?v=13" alt="Toko Baju 3" class="clickable" onerror="this.src='https://via.placeholder.com/600x360/0F172A/60A5FA?text=Toko+Baju+3'">
+              <img src="foto/project-e-commerce/foto-4.png?v=13" alt="Toko Baju 4" class="clickable" onerror="this.src='https://via.placeholder.com/600x360/0F172A/60A5FA?text=Toko+Baju+4'">
+            </div>
+            <button class="carousel-btn carousel-prev"><i class="fa-solid fa-chevron-left"></i></button>
+            <button class="carousel-btn carousel-next"><i class="fa-solid fa-chevron-right"></i></button>
+            <div class="carousel-dots"></div>
+            <div class="carousel-counter">1 / 4</div>
+            <div class="carousel-hint"><i class="fa-solid fa-hand"></i> geser</div>
+          </div>
+          <div class="project-content">
+            <h3>Management Toko Baju Online + Kasir Toko</h3>
+            <p class="project-desc">E-commerce toko baju online terintegrasi sistem kasir offline (POS). Kelola produk, stok, pesanan online, transaksi kasir, dan laporan keuangan dalam satu platform.</p>
+            <div class="project-info">
+              <span><strong>Peran</strong> <span class="info-value">Full Stack Developer</span></span>
+              <span><strong>Status</strong> <span style="display:inline-flex;align-items:center;gap:6px;color:#fbbf24;font-weight:600;"><span class="dot" style="width:7px;height:7px;background:#f59e0b;border-radius:50%;display:inline-block;box-shadow:0 0 6px rgba(245,158,11,.6);flex-shrink:0;"></span> Dalam Pengembangan</span></span>
+            </div>
+            <div class="tags" style="margin-top:18px;">
+              <div class="tag">Laravel</div><div class="tag">MySQL</div><div class="tag">E-Commerce</div>
+            </div>
+            <div class="project-links" style="display:flex;flex-direction:column;gap:10px;">
+              <span style="display:flex;align-items:center;justify-content:center;gap:8px;padding:12px 20px;border-radius:40px;background:rgba(245,158,11,.12);border:1px solid rgba(245,158,11,.25);color:#fbbf24;font-weight:600;font-size:14px;"><i class="fa-solid fa-person-digging"></i> On Progress</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <div id="lightbox" class="lightbox" onclick="closeLightbox(event)">
+    <button class="lightbox-close" onclick="closeLightboxDirect()" aria-label="Close preview"><i class="fa-solid fa-xmark"></i></button>
+    <button class="lightbox-nav lightbox-prev hidden" onclick="lightboxPrev()" aria-label="Foto sebelumnya"><i class="fa-solid fa-chevron-left"></i></button>
+    <button class="lightbox-nav lightbox-next hidden" onclick="lightboxNext()" aria-label="Foto selanjutnya"><i class="fa-solid fa-chevron-right"></i></button>
+    <div class="lightbox-content" onclick="event.stopPropagation()">
+      <div id="lightbox-counter" class="lightbox-counter hidden"></div>
+      <img id="lightbox-img" src="" alt="Project Preview">
+      <div class="lightbox-caption"><span id="lightbox-title"></span><span id="lightbox-desc" style="color:#60A5FA;"></span></div>
+      <div id="lightbox-dots" class="lightbox-dots hidden"></div>
+    </div>
+    <div class="lightbox-hint-bottom"><i class="fa-solid fa-arrows-left-right"></i> Geser / swipe atau pakai tombol &larr; &rarr; untuk ganti foto â€¢ ESC tutup</div>
+  </div>
+
+  <script>
+    // ========== LENIS SMOOTH SCROLL (fix refresh jitter) ==========
+    let lenis;
+    try {
+      if (typeof Lenis !== 'undefined') {
+        lenis = new Lenis({ duration: 1.1, easing: function(t){ return Math.min(1, 1.001 - Math.pow(2, -10 * t)); }, smoothWheel: true, smoothTouch: false });
+        lenis.on('scroll', ScrollTrigger.update);
+        gsap.ticker.add(function(time){ lenis.raf(time * 1000); });
+        gsap.ticker.lagSmoothing(0);
+      }
+    } catch(e){ console.warn('Lenis init failed', e); }
+
+    gsap.registerPlugin(ScrollTrigger);
+    // FIX BUG REFRESH: refresh ScrollTrigger setelah load & cegah section hilang
+    window.addEventListener('load', function(){
+      setTimeout(function(){
+        ScrollTrigger.refresh();
+        gsap.utils.toArray(".project-card").forEach(function(card){
+          var rect = card.getBoundingClientRect();
+          if (rect.top < window.innerHeight * 0.85) {
+            gsap.set(card, {opacity:1, y:0, clearProps:"transform"});
+          }
+        });
+        ScrollTrigger.refresh();
+      }, 150);
+    });
+    document.addEventListener('readystatechange', function(){ if(document.readyState==='complete') ScrollTrigger.refresh(); });
+    window.addEventListener('pageshow', function(){ ScrollTrigger.refresh(); window.scrollTo(0,0); });
+
+    let lastScroll = 0; const navbar = document.querySelector('nav');
+    if (navbar) navbar.style.transform = 'translateY(0)';
+    window.addEventListener('scroll', function () {
+      let currentScroll = window.pageYOffset;
+      if (!navbar) return;
+      if (currentScroll > lastScroll && currentScroll > 100) navbar.style.transform = 'translateY(-100px)';
+      else navbar.style.transform = 'translateY(0)';
+      lastScroll = currentScroll;
+    }, {passive:true});
+    function toggleMenu(){
+      const menu = document.querySelector('.menu');
+      const hamburger = document.querySelector('.hamburger');
+      const icon = document.querySelector('.hamburger i');
+      if(menu.classList.contains('active')){
+        menu.classList.remove('active'); hamburger.classList.remove('active');
+        if(icon){ icon.classList.remove('fa-times'); icon.classList.add('fa-bars'); }
+      } else {
+        menu.classList.add('active'); hamburger.classList.add('active');
+        if(icon){ icon.classList.remove('fa-bars'); icon.classList.add('fa-times'); }
+      }
+    }
+    document.querySelectorAll('.menu a').forEach(link=>link.addEventListener('click', closeMenu));
+    document.addEventListener('click', function(event){
+      const menu = document.querySelector('.menu'); const hamburger = document.querySelector('.hamburger');
+      if(menu && menu.classList.contains('active')){
+        if(!menu.contains(event.target) && !hamburger.contains(event.target)){
+          const icon = document.querySelector('.hamburger i');
+          menu.classList.remove('active'); hamburger.classList.remove('active');
+          if(icon){ icon.classList.remove('fa-times'); icon.classList.add('fa-bars'); }
+        }
+      }
+    });
+    function closeMenu(){
+      const menu = document.querySelector('.menu'); const hamburger = document.querySelector('.hamburger'); const icon = document.querySelector('.hamburger i');
+      if(!menu || !hamburger) return;
+      menu.classList.remove('active'); hamburger.classList.remove('active');
+      if(icon){ icon.classList.remove('fa-times'); icon.classList.add('fa-bars'); }
+    }
+    window.addEventListener('pageshow', function(){ closeMenu(); document.body.style.overflow=''; });
+    window.addEventListener('load', function(){ closeMenu(); });
+    // LIGHTBOX - Gallery dengan swipe/geser ke foto selanjutnya/sebelumnya
+    let lbGallery = [];
+    let lbIndex = 0;
+    let lbTitleCache = '';
+    let lbDescCache = '';
+    let lbTouchStartX = 0;
+    let lbTouchStartY = 0;
+    let lbIsDragging = false;
+
+    function openLightbox(src, title, desc, gallery, startIdx){
+      const lb = document.getElementById('lightbox');
+      const lbImg = document.getElementById('lightbox-img');
+      const lbTitle = document.getElementById('lightbox-title');
+      const lbDesc = document.getElementById('lightbox-desc');
+      if(!lb || !lbImg) return;
+      // dukung gallery: jika gallery array diberikan, pakai itu; jika tidak, coba 1 foto
+      if(Array.isArray(gallery) && gallery.length){
+        lbGallery = gallery.slice();
+        lbIndex = typeof startIdx === 'number' ? startIdx : 0;
+        // cari index jika src ada di gallery tapi startIdx tidak diberikan
+        if(typeof startIdx !== 'number'){
+          let found = lbGallery.findIndex(s => s && src && s.split('?')[0] === src.split('?')[0]);
+          if(found >= 0) lbIndex = found;
+        }
+      } else if(Array.isArray(src)){
+        lbGallery = src.slice(); lbIndex = 0; src = lbGallery[0];
+      } else {
+        lbGallery = src ? [src] : [];
+        lbIndex = 0;
+      }
+      lbTitleCache = title || ''; lbDescCache = desc || '';
+      lbTitle.textContent = lbTitleCache; lbDesc.textContent = lbDescCache;
+      updateLightboxUI();
+      lb.classList.add('active'); document.body.style.overflow = 'hidden';
+      lb.style.display = 'flex'; requestAnimationFrame(()=>lb.classList.add('active'));
+    }
+    function updateLightboxUI(){
+      const lbImg = document.getElementById('lightbox-img');
+      const lbTitle = document.getElementById('lightbox-title');
+      const lbDesc = document.getElementById('lightbox-desc');
+      const counter = document.getElementById('lightbox-counter');
+      const dotsWrap = document.getElementById('lightbox-dots');
+      const prevBtn = document.querySelector('.lightbox-prev');
+      const nextBtn = document.querySelector('.lightbox-next');
+      if(!lbImg || !lbGallery.length) return;
+      // clamp index loop
+      lbIndex = (lbIndex + lbGallery.length) % lbGallery.length;
+      lbImg.style.opacity = '0';
+      setTimeout(()=>{ lbImg.src = lbGallery[lbIndex]; lbImg.alt = lbTitleCache + ' ' + (lbIndex+1); lbImg.style.opacity='1'; }, 80);
+      lbImg.style.transition = 'opacity .2s ease';
+      if(lbTitle) lbTitle.textContent = lbTitleCache;
+      if(lbDesc) lbDesc.textContent = lbDescCache;
+      const total = lbGallery.length;
+      const hasMultiple = total > 1;
+      if(counter){
+        if(hasMultiple){ counter.textContent = (lbIndex+1) + ' / ' + total; counter.classList.remove('hidden'); }
+        else counter.classList.add('hidden');
+      }
+      if(prevBtn) prevBtn.classList.toggle('hidden', !hasMultiple);
+      if(nextBtn) nextBtn.classList.toggle('hidden', !hasMultiple);
+      if(dotsWrap){
+        if(hasMultiple){
+          dotsWrap.innerHTML='';
+          lbGallery.forEach((_,i)=>{
+            const dot=document.createElement('span');
+            if(i===lbIndex) dot.classList.add('active');
+            dot.addEventListener('click', ()=>{ lbIndex=i; updateLightboxUI(); });
+            dotsWrap.appendChild(dot);
+          });
+          dotsWrap.classList.remove('hidden');
+        } else { dotsWrap.classList.add('hidden'); dotsWrap.innerHTML=''; }
+      }
+    }
+    function lightboxNext(){ if(lbGallery.length<=1) return; lbIndex=(lbIndex+1)%lbGallery.length; updateLightboxUI(); }
+    function lightboxPrev(){ if(lbGallery.length<=1) return; lbIndex=(lbIndex-1+lbGallery.length)%lbGallery.length; updateLightboxUI(); }
+    function lightboxGoTo(i){ lbIndex=i; updateLightboxUI(); }
+    function closeLightboxDirect(){
+      const lb = document.getElementById('lightbox');
+      if(!lb) return;
+      lb.classList.remove('active'); document.body.style.overflow = '';
+      setTimeout(()=>{ if(!lb.classList.contains('active')) lb.style.display='none'; },300);
+    }
+    function closeLightbox(e){ if(e.target.id==='lightbox') closeLightboxDirect(); }
+    // swipe di lightbox
+    (function initLightboxSwipe(){
+      const lb = document.getElementById('lightbox');
+      const content = document.querySelector('.lightbox-content');
+      if(!lb || !content) return;
+      function getX(e){ return e.touches ? e.touches[0].clientX : e.clientX; }
+      function getY(e){ return e.touches ? e.touches[0].clientY : e.clientY; }
+      function onStart(e){
+        if(!lb.classList.contains('active')) return;
+        // jangan swipe jika klik tombol nav/close
+        if(e.target.closest('.lightbox-nav') || e.target.closest('.lightbox-close')) return;
+        lbIsDragging = true; lbTouchStartX = getX(e); lbTouchStartY = getY(e);
+      }
+      function onEnd(e){
+        if(!lbIsDragging) return;
+        lbIsDragging=false;
+        if(lbGallery.length<=1) return;
+        const endX = e.changedTouches ? e.changedTouches[0].clientX : e.clientX;
+        const endY = e.changedTouches ? e.changedTouches[0].clientY : e.clientY;
+        const diffX = endX - lbTouchStartX;
+        const diffY = endY - lbTouchStartY;
+        if(Math.abs(diffX) > Math.abs(diffY) && Math.abs(diffX) > 50){
+          if(diffX < 0) lightboxNext(); else lightboxPrev();
+        }
+      }
+      lb.addEventListener('touchstart', onStart, {passive:true});
+      lb.addEventListener('touchend', onEnd, {passive:true});
+      content.addEventListener('touchstart', onStart, {passive:true});
+      content.addEventListener('touchend', onEnd, {passive:true});
+      // mouse drag untuk desktop
+      let mouseDown=false;
+      content.addEventListener('mousedown', function(e){ mouseDown=true; onStart(e); });
+      window.addEventListener('mouseup', function(e){ if(mouseDown){ mouseDown=false; onEnd(e); } });
+      // cegah drag image
+      const lbImg = document.getElementById('lightbox-img');
+      if(lbImg) lbImg.addEventListener('dragstart', e=>e.preventDefault());
+    })();
+    document.addEventListener('keydown', function(e){
+      const lb=document.getElementById('lightbox');
+      if(!lb || !lb.classList.contains('active')) return;
+      if(e.key==='Escape') closeLightboxDirect();
+      else if(e.key==='ArrowRight') lightboxNext();
+      else if(e.key==='ArrowLeft') lightboxPrev();
+    });
+    window.addEventListener('load', function(){ var lb=document.getElementById('lightbox'); if(lb){ lb.classList.remove('active'); lb.style.display='none'; document.body.style.overflow=''; } });
+    window.addEventListener('pageshow', function(){ var lb=document.getElementById('lightbox'); if(lb){ lb.classList.remove('active'); lb.style.display='none'; document.body.style.overflow=''; } });
+    // CAROUSEL - Swipe + Autoplay (FIX BUG REFRESH: cleanup timers on reload/bfcache)
+    const __carouselTimers = [];
+    document.querySelectorAll('.project-carousel').forEach(carousel=>{
+      const track = carousel.querySelector('.carousel-track');
+      if(!track) return;
+      const imgs = track.querySelectorAll('img');
+      const prevBtn = carousel.querySelector('.carousel-prev');
+      const nextBtn = carousel.querySelector('.carousel-next');
+      const dotsWrap = carousel.querySelector('.carousel-dots');
+      const counter = carousel.querySelector('.carousel-counter');
+      let idx = 0; const total = imgs.length;
+      if(total <= 1){
+        if(track) track.style.transform='translateX(0)';
+        // tetap aktifkan lightbox untuk 1 foto + bisa swipe walau cuma 1
+        imgs.forEach((img,i)=>{
+          img.addEventListener('click', ()=>{
+            const gal = Array.from(imgs).map(x=>x.src);
+            const projectTitle = carousel.closest('.project-card')?.querySelector('.project-content h3')?.textContent?.trim() || img.alt || '';
+            openLightbox(gal[i], projectTitle, '', gal, i);
+          });
+        });
+        return;
+      }
+      let autoplayDelay = parseInt(carousel.dataset.autoplay) || 4000;
+      let timer = null;
+      let startX = 0, currentX = 0, isDragging = false, startTranslate = 0;
+      // build dots
+      if(dotsWrap){
+        dotsWrap.innerHTML='';
+        imgs.forEach((_,i)=>{
+          const dot = document.createElement('span');
+          if(i===0) dot.classList.add('active');
+          dot.addEventListener('click', ()=> goTo(i));
+          dotsWrap.appendChild(dot);
+        });
+      }
+      const dots = dotsWrap ? dotsWrap.querySelectorAll('span') : [];
+      function update(){
+        track.style.transform = `translateX(-${idx*100}%)`;
+        dots.forEach((d,i)=> d.classList.toggle('active', i===idx));
+        if(counter) counter.textContent = `${idx+1} / ${total}`;
+      }
+      function goTo(i){
+        idx = (i + total) % total; update(); resetAutoplay();
+      }
+      function next(){ goTo(idx+1); }
+      function prev(){ goTo(idx-1); }
+      if(nextBtn) nextBtn.addEventListener('click', next);
+      if(prevBtn) prevBtn.addEventListener('click', prev);
+      function startAutoplay(){
+        stopAutoplay();
+        timer = setInterval(next, autoplayDelay);
+        __carouselTimers.push(timer);
+      }
+      function stopAutoplay(){ if(timer) { clearInterval(timer); timer=null; } }
+      function resetAutoplay(){ stopAutoplay(); startAutoplay(); }
+      carousel.addEventListener('mouseenter', stopAutoplay);
+      carousel.addEventListener('mouseleave', startAutoplay);
+      let moved = false;
+      imgs.forEach((img,i)=>{
+        img.addEventListener('click', ()=>{
+          if(!moved){
+            const gal = Array.from(imgs).map(x=>x.src);
+            const projectTitle = carousel.closest('.project-card')?.querySelector('.project-content h3')?.textContent?.trim() || img.alt || '';
+            openLightbox(gal[i], projectTitle, '', gal, i);
+          }
+        });
+      });
+      function getX(e){ return e.touches ? e.touches[0].clientX : e.clientX; }
+      function onStart(e){
+        isDragging = true; moved = false; startX = getX(e);
+        startTranslate = -idx*100;
+        track.classList.add('dragging');
+        stopAutoplay();
+      }
+      function onMove(e){
+        if(!isDragging) return;
+        currentX = getX(e);
+        let diff = currentX - startX;
+        let diffPercent = (diff / carousel.offsetWidth) * 100;
+        if(Math.abs(diff) > 5) moved = true;
+        track.style.transform = `translateX(${startTranslate + diffPercent}%)`;
+      }
+      function onEnd(e){
+        if(!isDragging) return;
+        isDragging = false; track.classList.remove('dragging');
+        let diff = (e.changedTouches ? e.changedTouches[0].clientX : e.clientX) - startX;
+        if(Math.abs(diff) > 50){
+          if(diff < 0) next(); else prev();
+        } else {
+          update();
+        }
+        startAutoplay();
+        setTimeout(()=> moved=false, 100);
+      }
+      carousel.addEventListener('touchstart', onStart, {passive:true});
+      carousel.addEventListener('touchmove', onMove, {passive:true});
+      carousel.addEventListener('touchend', onEnd);
+      carousel.addEventListener('mousedown', onStart);
+      window.addEventListener('mousemove', onMove);
+      window.addEventListener('mouseup', onEnd);
+      update(); startAutoplay();
+      // expose stop for global cleanup
+      carousel._stopAutoplay = stopAutoplay;
+    });
+    // FIX BUG REFRESH: bersihkan semua timer carousel saat pagehide/reload agar tidak double interval setelah bfcache
+    window.addEventListener('pagehide', function(){ __carouselTimers.forEach(function(t){ clearInterval(t); }); document.querySelectorAll('.project-carousel').forEach(function(c){ if(c._stopAutoplay) c._stopAutoplay(); }); });
+    window.addEventListener('beforeunload', function(){ __carouselTimers.forEach(function(t){ clearInterval(t); }); });
+
+    // GSAP project cards - FIX BUG REFRESH: pastikan tidak hilang setelah reload di tengah halaman
+    gsap.utils.toArray(".project-card").forEach(function(card){
+      gsap.from(card, {
+        opacity:0, y:30, duration:0.6, ease:"power2.out", overwrite:"auto",
+        scrollTrigger:{
+          trigger:card, start:"top 85%",
+          onEnter: function(self){ gsap.to(self.trigger, {opacity:1, y:0, duration:0.5, overwrite:"auto"}); },
+          onEnterBack: function(self){ gsap.to(self.trigger, {opacity:1, y:0, duration:0.5, overwrite:"auto"}); }
+        }
+      });
+    });
+  </script>
+</body>
+</html>
+
+
+
+
+
